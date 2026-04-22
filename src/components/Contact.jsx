@@ -1,4 +1,3 @@
-// src/components/Contact.jsx
 import { useEffect, useState } from 'react';
 import emailjs from '@emailjs/browser';
 import SectionHeader from './SectionHeader.jsx';
@@ -340,13 +339,13 @@ export default function Contact() {
 
                 <div className="form-field">
                   <div className="form-label-wrap">
-                    <span className="form-label-word">address</span>
+                    <span className="form-label-word">email address</span>
                     <span className="form-label-pos">n.</span>
                   </div>
                   <input
                     type="email"
                     className="form-input"
-                    placeholder="your address"
+                    placeholder="your email address"
                     value={form.from_email}
                     onChange={e => set('from_email', e.target.value)}
                     autoComplete="off"
@@ -385,7 +384,7 @@ export default function Contact() {
                 </button>
 
                 {status === 'error' && (
-                  <p className="form-error">something went wrong — try emailing directly.</p>
+                  <p className="form-error">something went wrong - try emailing directly.</p>
                 )}
               </>
             )}

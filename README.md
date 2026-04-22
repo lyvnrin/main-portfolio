@@ -1,16 +1,57 @@
-# React + Vite
+# Lavanya Kamble - Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Personal portfolio site. Aesthetic: editorial, warm, typeset.
 
-Currently, two official plugins are available:
+## Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- React 18 + Vite
+- Vanilla CSS (no Tailwind, no UI libraries)
+- EmailJS for contact form
+- Cormorant Garamond + Cormorant SC + Inter via Google Fonts
 
-## React Compiler
+## Getting Started
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```bash
+npm install
+npm run dev
+```
 
-## Expanding the ESLint configuration
+## Structure
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```
+src/
+├── components/
+│   ├── Navbar.jsx        
+│   ├── Hero.jsx          
+│   ├── About.jsx         
+│   ├── Skills.jsx        
+│   ├── Projects.jsx      
+│   ├── ProjectCase.jsx   
+│   ├── Marquee.jsx       
+│   ├── Contact.jsx      
+│   ├── Footer.jsx
+│   ├── SectionHeader.jsx
+│   ├── Cursor.jsx        
+│   └── TopMark.jsx       
+├── hooks/
+│   ├── useReveal.js      
+│   └── useTheme.js       
+└── styles/
+    └── global.css        
+```
+
+## Features
+
+- Light/dark mode toggle (☽/☀) in navbar, persisted to localStorage
+- Custom blob cursor with context labels via `data-cursor` attributes
+- Scroll-reveal animations on all sections
+- Case study modal with frosted backdrop (closes on Esc or backdrop click)
+- EmailJS contact form with sending/success/error states
+- Infinite marquee ticker
+- Fully responsive (desktop-first)
+
+## Deployment
+
+```bash
+npm run dev
+```
