@@ -116,11 +116,11 @@ export default function About() {
         <div className="about-grid">
           <div className="about-left reveal">
             <blockquote className="about-pull-quote">
-              I write code the way I write prose — with intention, rhythm, and
+              I write code the way I write prose  with intention, rhythm, and
               a refusal to let the first draft be the last.
             </blockquote>
             <p className="about-margin-note">
-              — first noted at 2am debugging a parser that turned out to be entirely correct
+               — usually realised at 2am, when the bug turns out to be a missing semicolon.
             </p>
           </div>
 
@@ -128,29 +128,30 @@ export default function About() {
             <div className="about-para reveal reveal-delay-1">
               <span className="about-para-label">¶ I.</span>
               <p className="about-para-text">
-                Lavanya Kamble is a Computer Science student at Royal Holloway, University of
-                London — presently absorbed in the art of making machines do interesting things.
-                Her work sits at the comfortable intersection of data systems, clean interfaces,
-                and the stubborn belief that software should be both rigorous and human.
+                Hi, I'm a penultimate year Computer Science student at Royal Holloway,
+                University of London - presently absorbed in the art of making machines
+                do interesting things. My work sits at the intersection of data systems,
+                clean interfaces, and the stubborn belief that software should be both
+                rigorous and human.
               </p>
             </div>
 
             <div className="about-para reveal reveal-delay-2">
               <span className="about-para-label">¶ II.</span>
               <p className="about-para-text">
-                She writes at <em>Rose Rendered</em> — a Substack publication about technology,
-                culture, and the small moments where the two collide unexpectedly. The essays
-                are long, considered, and occasionally about why someone had to touch grass.
-                The thinking is always about something larger.
+                I'm drawn to the full stack - from wrangling messy datasets and building
+                APIs to crafting the interfaces that sit on top. Lately I've been deep
+                in data analytics, financial systems, and the quiet satisfaction of a
+                query that actually runs fast.
               </p>
             </div>
 
             <div className="about-para reveal reveal-delay-3">
               <span className="about-para-label">¶ III.</span>
               <p className="about-para-text">
-                She is available for summer 2026 — internships, research roles, or projects
-                that require someone who will stay up too late thinking about architecture.
-                Preferably with a good coffee situation and genuine problems to solve.
+                I'm open to summer 2026 internships - full-stack, data, or anywhere the
+                problems are genuinely hard. Preferably somewhere with a good coffee
+                situation, real ownership, and things worth building.
               </p>
             </div>
           </div>

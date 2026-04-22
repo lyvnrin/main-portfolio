@@ -19,6 +19,15 @@
   --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* HIDE SCROLLBAR */
+::-webkit-scrollbar {
+  display: none;
+}
+
+* {
+  scrollbar-width: none;
+}
+
 /* RESET */
 *, *::before, *::after {
   box-sizing: border-box;

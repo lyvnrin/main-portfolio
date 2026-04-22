@@ -1,3 +1,4 @@
+// src/components/Hero.jsx
 import { useEffect, useState } from 'react';
 
 const styles = `
@@ -65,8 +66,25 @@ const styles = `
     font-style: italic;
     font-size: clamp(1rem, 2vw, 1.4rem);
     color: var(--muted);
-    margin-bottom: 2.5rem;
+    margin-bottom: 0.75rem;
     letter-spacing: 0.01em;
+  }
+
+  .hero-pronoun-row {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 2rem;
+  }
+
+  .hero-pronoun-badge {
+    border: 0.5px solid var(--rule);
+    padding: 2px 10px;
+    border-radius: 2rem;
+    font-family: var(--font-sans);
+    font-size: 0.68rem;
+    color: var(--muted);
+    letter-spacing: 0.04em;
   }
 
   .hero-rule {
@@ -159,12 +177,12 @@ const styles = `
 `;
 
 const synonyms = [
-  'computer scientist',
+  'penultimate year cs student',
+  'full-stack developer',
+  'aspiring data analyst',
+  'fintech curious',
   'systems thinker',
-  'software engineer',
-  'builder of things',
-  'problem dissolver',
-  'code poet',
+  'builder of things that matter',
 ];
 
 export default function Hero() {
@@ -200,14 +218,17 @@ export default function Hero() {
             <h1 className="hero-name">Lavanya Kamble</h1>
             <span className="hero-pos">n.</span>
           </div>
-          <p className="hero-pronunciation">/ la · vʌn · ja · kɑm · bleɪ /</p>
+          <p className="hero-pronunciation">/ lə · vʌn · jə · kɑm · bleɪ /</p>
+          <div className="hero-pronoun-row">
+            <span className="hero-pronoun-badge">she / her</span>
+          </div>
           <div className="hero-rule" />
           <div className="hero-definition">
             <span className="hero-def-num">1.</span>
             <p className="hero-def-text">
-              a <span className={synonymClass}>{synonyms[synIdx]}</span> and
-              writer; CS student at Royal Holloway; author of{' '}
-              <em>Rose Rendered</em>; builder of things that matter.
+              <span className={synonymClass}>{synonyms[synIdx]}</span>;
+              documented at the intersection of systems and data. Known to
+              deliver under pressure. Chiefly collaborative.
             </p>
           </div>
         </div>
@@ -217,7 +238,7 @@ export default function Hero() {
           scroll to read
         </div>
 
-        <div className="hero-corner-text">Royal Holloway · 2026</div>
+        <div className="hero-corner-text">London, England · Vol. I</div>
       </div>
     </header>
   );
