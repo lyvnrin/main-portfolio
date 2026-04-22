@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
+import { useTheme } from '../hooks/useTheme.js';
 
 const styles = `
   .navbar {
@@ -149,9 +150,31 @@ const styles = `
     transform: scaleX(1);
   }
 
+
+  .theme-toggle {
+    flex: 0 0 auto;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid var(--rule);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    color: var(--muted);
+    transition: border-color 0.3s ease, color 0.3s ease, transform 0.4s var(--ease-out-expo);
+    background: transparent;
+  }
+
+  .theme-toggle:hover {
+    border-color: var(--rose);
+    color: var(--rose);
+    transform: rotate(20deg);
+  }
   @media (max-width: 768px) {
     .navbar-center { display: none; }
     .navbar-sub { display: none; }
+    .theme-toggle { display: flex; }
     .navbar-inner { padding: 0 1.5rem; }
   }
 `;
@@ -168,6 +191,7 @@ const SECTIONS = ['about', 'skills', 'projects', 'contact'];
 export default function Navbar() {
   const [visible, setVisible] = useState(false);
   const [active, setActive] = useState('');
+  const { theme, toggle } = useTheme();
   const styleRef = useRef(null);
 
   useEffect(() => {
@@ -236,15 +260,14 @@ export default function Navbar() {
           ))}
         </div>
 
-        <a
-          href="https://www.linkedin.com/in/lavanyakamble/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="navbar-sub"
-          data-cursor="read →"
+        <button
+          className="theme-toggle"
+          onClick={toggle}
+          aria-label={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
+          data-cursor={theme === 'light' ? 'dark ◑' : 'light ◑'}
         >
-          ↗ Linkedin
-        </a>
+          {theme === 'light' ? '☽' : '☀'}
+        </button>
       </div>
     </nav>
   );

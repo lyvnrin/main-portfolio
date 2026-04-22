@@ -1,4 +1,6 @@
-/* DESIGN TOKENS */
+/* src/styles/global.css */
+
+/* ─── Design Tokens ─────────────────────────────────── */
 :root {
   --bg: #FAF7F2;
   --ink: #1F1A15;
@@ -19,16 +21,26 @@
   --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* HIDE SCROLLBAR */
-::-webkit-scrollbar {
-  display: none;
+/* ─── Dark Mode Tokens ───────────────────────────────── */
+[data-theme="dark"] {
+  --bg: #16120E;
+  --ink: #F0EBE3;
+  --muted: #9A8F85;
+  --rule: rgba(240,235,227,0.12);
+  --rose: #C97A62;
+  --rose-soft: #4A2A20;
+  --rose-deep: #E8A898;
+  --slate: #7A8FA8;
+  --slate-soft: #1E2A38;
+  --slate-deep: #A8BECC;
 }
 
-* {
-  scrollbar-width: none;
+[data-theme="dark"] body::before {
+  mix-blend-mode: screen;
+  opacity: 0.04;
 }
 
-/* RESET */
+/* ─── Reset ─────────────────────────────────────────── */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -52,6 +64,7 @@ body {
   font-weight: 400;
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
+  transition: background 0.4s ease, color 0.4s ease;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
 }
@@ -77,7 +90,7 @@ button {
   color: inherit;
 }
 
-/* SVG GRAIN OVERLAY */
+/* ─── SVG Grain Overlay ──────────────────────────────── */
 body::before {
   content: '';
   position: fixed;
@@ -91,7 +104,7 @@ body::before {
   background-size: 300px 300px;
 }
 
-/* REVEAL ON SCROLL */
+/* ─── Reveal on Scroll ───────────────────────────────── */
 .reveal {
   opacity: 0;
   transform: translateY(28px);
@@ -110,7 +123,7 @@ body::before {
 .reveal-delay-5 { transition-delay: 0.5s; }
 .reveal-delay-6 { transition-delay: 0.6s; }
 
-/* EDITORIAL LINK UNDERLINE */
+/* ─── Editorial Link Underline ───────────────────────── */
 .editorial-link {
   display: inline-block;
   position: relative;
@@ -137,14 +150,14 @@ body::before {
   transform-origin: left;
 }
 
-/* HAIRLINE RULE */
+/* ─── Hairline Rule ──────────────────────────────────── */
 .hairline {
   border: none;
   border-top: 1px solid var(--rule);
   margin: 0;
 }
 
-/* SECTION WRAPPER */
+/* ─── Section wrapper ────────────────────────────────── */
 .section-wrap {
   max-width: 1200px;
   margin: 0 auto;
