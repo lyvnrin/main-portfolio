@@ -237,13 +237,13 @@ export default function Navbar() {
         </div>
 
         <a
-          href="https://roserendered.substack.com"
+          href="https://www.linkedin.com/in/lavanyakamble/"
           target="_blank"
           rel="noopener noreferrer"
           className="navbar-sub"
           data-cursor="read →"
         >
-          ↗ Rose Rendered
+          ↗ Linkedin
         </a>
       </div>
     </nav>

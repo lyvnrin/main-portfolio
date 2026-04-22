@@ -29,7 +29,7 @@ export default function Footer() {
 
   return (
     <footer className="footer">
-      <p className="footer-text">© Lavanya Kamble 2025 — made with intention</p>
+      <p className="footer-text">© Lavanya Kamble 2025 · made with intention</p>
     </footer>
   );
 }

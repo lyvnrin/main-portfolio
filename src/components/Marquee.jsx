@@ -47,9 +47,8 @@ const styles = `
 `;
 
 const items = [
-  'available for summer 2026',
+  'available for summer internships 2026',
   'cs @ royal holloway',
-  'rose rendered',
   'lyvnrin on github',
   'building things that matter',
 ];

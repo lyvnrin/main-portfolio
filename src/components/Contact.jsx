@@ -1,6 +1,12 @@
+// src/components/Contact.jsx
 import { useEffect, useState } from 'react';
+import emailjs from '@emailjs/browser';
 import SectionHeader from './SectionHeader.jsx';
 import { useRevealElements } from '../hooks/useReveal.js';
+
+const EMAILJS_SERVICE_ID  = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const EMAILJS_PUBLIC_KEY  = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
 const styles = `
   .contact-section {
@@ -115,14 +121,18 @@ const styles = `
     font-size: 0.7rem;
     letter-spacing: 0.14em;
     color: var(--ink);
-    transition: border-color 0.3s ease, color 0.3s ease;
+    transition: border-color 0.3s ease, color 0.3s ease, opacity 0.3s ease;
     width: 100%;
     text-transform: uppercase;
   }
 
-  .form-submit:hover {
+  .form-submit:hover:not(:disabled) {
     border-color: var(--rose);
     color: var(--rose);
+  }
+
+  .form-submit:disabled {
+    opacity: 0.4;
   }
 
   .form-submit-dot {
@@ -133,6 +143,55 @@ const styles = `
   .form-submit.sent {
     border-color: var(--rose);
     color: var(--rose);
+  }
+
+  .form-error {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 0.85rem;
+    color: #c77;
+    margin-top: 0.75rem;
+    text-align: center;
+  }
+
+  .contact-success {
+    padding: 1rem 0;
+  }
+
+  .contact-success-row {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .contact-success-name {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    font-size: 1.4rem;
+    color: var(--ink);
+  }
+
+  .contact-success-phonetic {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+
+  .contact-success-pos {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 0.9rem;
+    color: var(--rose);
+  }
+
+  .contact-success-def {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--muted);
+    line-height: 1.6;
   }
 
   .contact-aside {}
@@ -211,15 +270,16 @@ const styles = `
 `;
 
 const elsewhereLinks = [
-  { platform: 'GitHub', handle: 'lyvnrin', href: 'https://github.com/lyvnrin' },
-  { platform: 'Substack', handle: 'Rose Rendered', href: 'https://roserendered.substack.com' },
-  { platform: 'LinkedIn', handle: 'Lavanya Kamble', href: 'https://linkedin.com/in/lavanyakamble' },
-  { platform: 'Email', handle: 'hello@lavanyakamble.com', href: 'mailto:hello@lavanyakamble.com' },
+  { platform: 'View My CV',       handle: 'Lavanya Kamble.pdf', href: '/LavanyaKamble_CV.pdf', target: '_blank' },
+  { platform: 'LinkedIn', handle: 'lavanyakamble',      href: 'https://www.linkedin.com/in/lavanyakamble/', target: '_blank' },
+  { platform: 'GitHub',   handle: 'lyvnrin',            href: 'https://github.com/lyvnrin', target: '_blank' },
+  { platform: 'Notion',   handle: 'visual portfolio',          href: 'https://lavanya-k-portfolio.notion.site/Welcome-to-My-Portfolio-303e4dd70aaf80499338ee34e86937a6', target: '_blank' },
+  { platform: 'Email',    handle: 'lavanya.kamble6@gmail.com', href: 'mailto:lavanya.kamble6@gmail.com', target: '_self' },
 ];
 
 export default function Contact() {
-  const [form, setForm] = useState({ name: '', email: '', message: '' });
-  const [sent, setSent] = useState(false);
+  const [form, setForm] = useState({ from_name: '', from_email: '', message: '' });
+  const [status, setStatus] = useState('idle');
   useRevealElements();
 
   useEffect(() => {
@@ -229,17 +289,18 @@ export default function Contact() {
     return () => el.remove();
   }, []);
 
-  const handleChange = (e) => {
-    setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
-  };
+  const set = (k, v) => setForm(prev => ({ ...prev, [k]: v }));
+  const allFilled = form.from_name && form.from_email && form.message;
 
-  const handleSubmit = () => {
-    const subject = encodeURIComponent(`Hello from ${form.name || 'your website'}`);
-    const body = encodeURIComponent(
-      `Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`
-    );
-    window.location.href = `mailto:hello@lavanyakamble.com?subject=${subject}&body=${body}`;
-    setSent(true);
+  const handleSend = async () => {
+    if (!allFilled || status === 'sending') return;
+    setStatus('sending');
+    try {
+      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, form, EMAILJS_PUBLIC_KEY);
+      setStatus('success');
+    } catch {
+      setStatus('error');
+    }
   };
 
   return (
@@ -247,80 +308,98 @@ export default function Contact() {
       <div className="section-wrap">
         <SectionHeader number="IV" title="Correspondence" />
         <div className="contact-grid">
+
           <div className="contact-form-wrap reveal">
-            <div className="form-field">
-              <div className="form-label-wrap">
-                <span className="form-label-word">name</span>
-                <span className="form-label-pos">n.</span>
+            {status === 'success' ? (
+              <div className="contact-success">
+                <div className="contact-success-row">
+                  <span className="contact-success-name">{form.from_name}</span>
+                  <span className="contact-success-phonetic">/ ˈkær.ə.spɒn.dənt /</span>
+                  <span className="contact-success-pos">n.</span>
+                </div>
+                <p className="contact-success-def">
+                  catalogued. a reply will follow in due course.
+                </p>
               </div>
-              <input
-                type="text"
-                name="name"
-                className="form-input"
-                placeholder="your name"
-                value={form.name}
-                onChange={handleChange}
-                autoComplete="off"
-              />
-            </div>
+            ) : (
+              <>
+                <div className="form-field">
+                  <div className="form-label-wrap">
+                    <span className="form-label-word">name</span>
+                    <span className="form-label-pos">n.</span>
+                  </div>
+                  <input
+                    type="text"
+                    className="form-input"
+                    placeholder="your name"
+                    value={form.from_name}
+                    onChange={e => set('from_name', e.target.value)}
+                    autoComplete="off"
+                  />
+                </div>
 
-            <div className="form-field">
-              <div className="form-label-wrap">
-                <span className="form-label-word">address</span>
-                <span className="form-label-pos">n.</span>
-              </div>
-              <input
-                type="email"
-                name="email"
-                className="form-input"
-                placeholder="your address"
-                value={form.email}
-                onChange={handleChange}
-                autoComplete="off"
-              />
-            </div>
+                <div className="form-field">
+                  <div className="form-label-wrap">
+                    <span className="form-label-word">address</span>
+                    <span className="form-label-pos">n.</span>
+                  </div>
+                  <input
+                    type="email"
+                    className="form-input"
+                    placeholder="your address"
+                    value={form.from_email}
+                    onChange={e => set('from_email', e.target.value)}
+                    autoComplete="off"
+                  />
+                </div>
 
-            <div className="form-field">
-              <div className="form-label-wrap">
-                <span className="form-label-word">message</span>
-                <span className="form-label-pos">v.</span>
-              </div>
-              <textarea
-                name="message"
-                className="form-textarea"
-                placeholder="write something worth cataloguing…"
-                value={form.message}
-                onChange={handleChange}
-                rows={5}
-              />
-            </div>
+                <div className="form-field">
+                  <div className="form-label-wrap">
+                    <span className="form-label-word">message</span>
+                    <span className="form-label-pos">v.</span>
+                  </div>
+                  <textarea
+                    className="form-textarea"
+                    placeholder="write something worth cataloguing…"
+                    value={form.message}
+                    onChange={e => set('message', e.target.value)}
+                    rows={5}
+                  />
+                </div>
 
-            <div className="form-ornament" aria-hidden="true">
-              <span className="form-ornament-line" />
-              <span className="form-ornament-cross">+</span>
-              <span className="form-ornament-line" />
-            </div>
+                <div className="form-ornament" aria-hidden="true">
+                  <span className="form-ornament-line" />
+                  <span className="form-ornament-cross">+</span>
+                  <span className="form-ornament-line" />
+                </div>
 
-            <button
-              className={`form-submit${sent ? ' sent' : ''}`}
-              onClick={handleSubmit}
-              data-cursor="write →"
-            >
-              <span className="form-submit-dot">·</span>
-              {sent ? 'sent — thank you' : 'send to catalogue'}
-              <span className="form-submit-dot">·</span>
-            </button>
+                <button
+                  className={`form-submit${status === 'success' ? ' sent' : ''}`}
+                  onClick={handleSend}
+                  disabled={!allFilled || status === 'sending'}
+                  data-cursor="write →"
+                >
+                  <span className="form-submit-dot">·</span>
+                  {status === 'sending' ? 'cataloguing…' : 'send to catalogue'}
+                  <span className="form-submit-dot">·</span>
+                </button>
+
+                {status === 'error' && (
+                  <p className="form-error">something went wrong — try emailing directly.</p>
+                )}
+              </>
+            )}
           </div>
 
           <aside className="contact-aside reveal reveal-delay-2">
             <span className="elsewhere-label">Elsewhere</span>
             <ul className="elsewhere-list">
-              {elsewhereLinks.map((link) => (
+              {elsewhereLinks.map(link => (
                 <li key={link.platform} className="elsewhere-item">
                   <span className="elsewhere-platform">{link.platform}</span>
                   <a
                     href={link.href}
-                    target="_blank"
+                    target={link.target}
                     rel="noopener noreferrer"
                     className="elsewhere-handle"
                     data-cursor="view →"
@@ -331,6 +410,7 @@ export default function Contact() {
               ))}
             </ul>
           </aside>
+
         </div>
       </div>
     </section>

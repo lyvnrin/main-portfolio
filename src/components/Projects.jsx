@@ -12,7 +12,6 @@ const styles = `
   .projects-grid {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: auto auto;
     gap: 1px;
     background: var(--rule);
     border: 1px solid var(--rule);
@@ -58,6 +57,8 @@ const styles = `
   .card-1 { grid-column: 1 / 8; grid-row: 1 / 3; min-height: 520px; }
   .card-2 { grid-column: 8 / 13; grid-row: 1 / 2; }
   .card-3 { grid-column: 8 / 13; grid-row: 2 / 3; }
+  .card-4 { grid-column: 1 / 7; grid-row: 3 / 4; }
+  .card-5 { grid-column: 7 / 13; grid-row: 3 / 4; }
 
   .project-top {
     display: flex;
@@ -78,6 +79,8 @@ const styles = `
     font-style: italic;
     font-size: 0.82rem;
     color: var(--rose-deep);
+    text-align: right;
+    max-width: 160px;
   }
 
   .project-title-row {
@@ -99,6 +102,11 @@ const styles = `
 
   .card-1 .project-title {
     font-size: clamp(2rem, 4vw, 3.5rem);
+  }
+
+  .card-4 .project-title,
+  .card-5 .project-title {
+    font-size: clamp(1.3rem, 2vw, 1.9rem);
   }
 
   .project-n {
@@ -154,7 +162,7 @@ const styles = `
     .projects-grid {
       grid-template-columns: 1fr;
     }
-    .card-1, .card-2, .card-3 {
+    .card-1, .card-2, .card-3, .card-4, .card-5 {
       grid-column: 1;
       grid-row: auto;
       min-height: 240px;
@@ -165,65 +173,111 @@ const styles = `
 const projects = [
   {
     number: '01',
-    title: 'RoseDB',
-    descriptor: 'a personal knowledge graph for the anxiously organised',
-    stack: 'Python · PostgreSQL',
+    title: 'Oaxaca',
+    descriptor: 'a full-stack restaurant management system, end to end',
+    stack: 'React · FastAPI · SQLite',
     cardClass: 'card-1',
-    annotation: 'built at 2am out of spite',
-    pronunciation: '/ rəʊz · diː · biː /',
-    definition: 'a semantic graph database for personal knowledge management, born from the frustration of losing good ideas in a notes app graveyard.',
-    etymology: 'from rose (the newsletter, the person) + DB (database); filed under "projects that became too serious too quickly."',
-    status: 'Active',
-    role: 'Sole Engineer',
-    filed: 'Spring 2025',
+    annotation: 'five sprints, one very tired team',
+    pronunciation: '/ wə · ˈhɑː · kə /',
+    definition: 'a restaurant management system with live order tracking, role-specific dashboards, and COGS analytics - built across a full five-sprint Scrum cycle.',
+    etymology: 'named after the Mexican state; filed under "projects that taught me what real deadlines feel like."',
+    status: 'Complete',
+    role: 'Lead Developer',
+    stack_full: 'React · FastAPI · SQLite',
+    filed: 'Spring 2026',
     sections: [
-      { heading: 'PREMISE', content: 'Every writer accumulates notes at a rate that outpaces their organisational willpower. RoseDB emerged from this exact entropy — a structured graph store for ideas, references, and the half-formed thoughts that might become essays.' },
-      { heading: 'APPROACH', content: 'Built on PostgreSQL with a recursive CTE schema for node-edge traversal. A FastAPI backend exposes the graph via a REST interface. The frontend is intentionally sparse: a search field, a node inspector, and a force-directed visualisation for when you want to feel like a conspiracy theorist with taste.' },
-      { heading: 'LEARNINGS', content: 'Graph traversal at scale requires aggressive indexing. The real engineering challenge was not the data model but the query language — deciding what a "related note" means semantically, not just structurally.' },
+      { heading: 'PREMISE', content: 'Restaurant operations involve a surprising number of simultaneous moving parts: orders, kitchen queues, staff roles, cost tracking. Oaxaca was built to handle all of them in one coherent system, with a distinct dashboard for each stakeholder.' },
+      { heading: 'APPROACH', content: 'A FastAPI backend handles order state and COGS logic, persisted in SQLite. Three React frontends - kitchen, waiter, and manager views - communicate via a shared REST API. Live order tracking was implemented with polling to keep the stack simple and reliable.' },
+      { heading: 'PROCESS', content: 'Developed across five Scrum sprints with full ceremony: standups, sprint reviews, retrospectives. The real learning was in the handoffs, keeping the API contract stable while three views evolved independently.' },
     ],
-    pullquote: 'The most interesting problems aren\'t the technical ones — they\'re deciding what counts as a connection.',
-    links: [{ label: '↗ GitHub', href: 'https://github.com/lyvnrin' }],
+    pullquote: 'The hardest part wasn\'t the code. It was agreeing on what "done" meant.',
+    links: [{ label: '↗ GitHub', href: 'https://github.com/lyvnrin/oaxaca' }],
   },
   {
     number: '02',
-    title: 'Ledger',
-    descriptor: 'personal finance tracking with a literary sensibility',
-    stack: 'React · Flask · SQLite',
+    title: 'Valora',
+    descriptor: 'an AI-powered financial chatbot for economic insight',
+    stack: 'React · Python',
     cardClass: 'card-2',
-    annotation: 'finance app for people who read',
-    pronunciation: '/ ˈlɛdʒ · ər /',
-    definition: 'a minimalist personal finance tracker that treats expense categorisation as taxonomy, not punishment.',
-    etymology: 'from Middle English "legger," a book for recording financial transactions; repurposed here for the digitally literate.',
+    annotation: 'fintech, but make it readable',
+    pronunciation: '/ və · ˈlɔː · rə /',
+    definition: 'an AI-powered financial chatbot that delivers economic insights on demand, with dynamic charts of stock and revenue data filtered across industries.',
+    etymology: 'from Spanish "valor," meaning value or worth; filed under "projects that made me care about finance."',
     status: 'Complete',
-    role: 'Full Stack',
-    filed: 'Autumn 2024',
+    role: 'Frontend',
+    stack_full: 'React · Python',
+    filed: 'Spring 2025',
     sections: [
-      { heading: 'PREMISE', content: 'Most budgeting apps are designed with the assumption that users hate themselves. Ledger was built with the opposite premise: that the act of tracking spending can be made thoughtful and even pleasant.' },
-      { heading: 'APPROACH', content: 'A Flask API handles transaction persistence and categorisation logic. The React frontend uses a deliberately restrained design language — monochrome charts, typeset tables, and zero gamification elements.' },
-      { heading: 'OUTCOME', content: 'Used daily since launch. The most important feature turned out to be the monthly summary email — a quiet, typeset note about where the money went, written in a tone that doesn\'t judge.' },
+      { heading: 'PREMISE', content: 'Financial data is everywhere and legible to almost no one. Valora was built to close that gap. A chatbot interface that answers economic questions and surfaces the underlying data as clean, filterable charts.' },
+      { heading: 'APPROACH', content: 'The Python backend handles AI query processing and data aggregation across industries. I contributed the React frontend - the chat interface, the dropdown-filtered chart system, and the layout that tries to make dense data feel approachable.' },
+      { heading: 'LEARNINGS', content: 'Presenting financial data well is a design problem as much as an engineering one. Every chart decision - axis labels, colour, granularity - changes what a user walks away believing.' },
     ],
-    links: [{ label: '↗ GitHub', href: 'https://github.com/lyvnrin' }],
+    links: [{ label: '↗ GitHub', href: 'https://github.com/lyvnrin/Valora' }],
   },
   {
     number: '03',
-    title: 'Marginalia',
-    descriptor: 'an API for annotating the open web',
-    stack: 'FastAPI · Vercel · PostgreSQL',
+    title: 'Lav-oogle',
+    descriptor: 'a mini search engine built on PageRank',
+    stack: 'Python · NumPy',
     cardClass: 'card-3',
-    annotation: 'what if the internet had margins?',
-    pronunciation: '/ mɑː · dʒɪ · ˈneɪ · lɪ · ə /',
-    definition: 'a web annotation service that lets readers leave notes in the margins of any URL — private, shared, or public.',
-    etymology: 'from Latin "marginalia," notes written in the margins of manuscripts; extended here to the margins of hypertext.',
-    status: 'In Progress',
-    role: 'Backend Lead',
-    filed: 'Winter 2025',
+    annotation: 'google, but smaller and more honest',
+    pronunciation: '/ læv · uː · ɡ(ə)l /',
+    definition: 'a miniature search engine implementing PageRank via graph-based link analysis and NumPy matrix operations, built from first principles.',
+    etymology: 'portmanteau of Lavanya + Google; filed under "things I built because algorithms coursework went too well."',
+    status: 'Complete',
+    role: 'Sole Engineer',
+    stack_full: 'Python · NumPy',
+    filed: 'Spring 2026',
     sections: [
-      { heading: 'PREMISE', content: 'Reading on the web is a solitary act. Marginalia treats URLs as addressable documents and lets readers build a layer of annotation on top of any page — a reading community without requiring the site\'s cooperation.' },
-      { heading: 'APPROACH', content: 'FastAPI handles annotation CRUD and serves a lightweight JavaScript snippet that surfaces annotations as overlaid margin notes. PostgreSQL with a URL-normalisation layer ensures that annotations survive redirects and protocol variations.' },
-      { heading: 'NEXT', content: 'The interesting unsolved problem is conflict resolution: what happens when two readers annotate the same character offset in a text that the publisher then edits? The current approach is conservative — annotations orphan gracefully.' },
+      { heading: 'PREMISE', content: 'PageRank is one of those algorithms that sounds simple until you implement it. Lav-oogle started as a coursework curiosity and became a full graph-based search engine built from the matrix up.' },
+      { heading: 'APPROACH', content: 'Link structure is modelled as a directed graph and represented as a NumPy adjacency matrix. Iterative power method converges to the stationary distribution, the PageRank scores. Query matching runs over an inverted index built at crawl time.' },
+      { heading: 'LEARNINGS', content: 'The maths is elegant. The edge cases are not. Dangling nodes, sink pages, and damping factor tuning each require careful handling before rankings start to feel meaningful.' },
     ],
-    pullquote: 'Every interesting technical problem is secretly a philosophical one about identity and change.',
-    links: [{ label: '↗ GitHub', href: 'https://github.com/lyvnrin' }],
+    links: [{ label: '↗ GitHub', href: 'https://github.com/lyvnrin/mini-search-engine' }],
+  },
+  {
+    number: '04',
+    title: 'Sort It Out.',
+    descriptor: 'an interactive sorting algorithm visualiser',
+    stack: 'React · JavaScript',
+    cardClass: 'card-4',
+    annotation: 'revision, but make it watchable',
+    pronunciation: '/ sɔːt · ɪt · aʊt /',
+    definition: 'an animated visualiser for Bubble, Merge, Quicksort, and Insertion Sort, with speed control and a tabbed revision sheet for each algorithm.',
+    etymology: 'imperative mood; filed under "tools I wished existed when I was revising."',
+    status: 'Live',
+    role: 'Sole Engineer',
+    stack_full: 'React · JavaScript',
+    filed: 'Spring 2026',
+    sections: [
+      { heading: 'PREMISE', content: 'Sorting algorithms are easier to understand in motion than on paper. Sort It Out turns four canonical algorithms into animated bar charts, with enough control - speed slider, step-through - to watch the logic unfold.' },
+      { heading: 'APPROACH', content: 'Each algorithm is implemented as a generator function, yielding intermediate states that drive the animation frame by frame. A tabbed revision sheet sits alongside: definitions, complexity tables, and notes in plain English.' },
+    ],
+    links: [
+      { label: '↗ Live', href: 'https://sorting-visualiser-lk.vercel.app/' },
+    ],
+  },
+  {
+    number: '05',
+    title: 'The House Always Wins?',
+    descriptor: 'a Monte Carlo simulation of casino profitability',
+    stack: 'Python · Pandas · Matplotlib · Jupyter',
+    cardClass: 'card-5',
+    annotation: 'spoiler: it usually does',
+    pronunciation: '/ ðə · haʊs · ɔːlweɪz · wɪnz /',
+    definition: 'a Monte Carlo simulation exploring whether single-player tables and AI automation increase casino profitability across blackjack, baccarat, and poker.',
+    etymology: 'from the gambling idiom; filed under "data projects with a question worth asking."',
+    status: 'In Progress',
+    role: 'Sole Engineer',
+    stack_full: 'Python · Pandas · Matplotlib · Jupyter',
+    filed: 'Spring 2026',
+    sections: [
+      { heading: 'PREMISE', content: 'Casinos are probability engines. The question this project asks is whether removing the human dealer — replacing them with AI-automated tables — measurably shifts the house edge or throughput in the casino\'s favour.' },
+      { heading: 'APPROACH', content: 'Monte Carlo simulation runs thousands of game iterations across three variants - blackjack, baccarat, poker - under different table configurations. Pandas handles the aggregation; Matplotlib surfaces the distributions. Jupyter keeps the analysis reproducible.' },
+      { heading: 'STATUS', content: 'Currently in progress. Early results suggest the edge case is not the house advantage itself - which barely moves - but table throughput. Automated tables are simply faster, and speed compounds.' },
+    ],
+    pullquote: 'The house doesn\'t win by cheating. It wins by being slightly right, very often.',
+    links: [{ label: '↗ GitHub', href: 'https://github.com/lyvnrin/casino-sim' }],
   },
 ];
 
