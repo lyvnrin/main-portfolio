@@ -1,4 +1,3 @@
-// src/components/Hero.jsx
 import { useEffect, useState } from 'react';
 
 const styles = `

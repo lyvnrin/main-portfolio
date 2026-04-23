@@ -169,3 +169,104 @@ body::before {
     padding: 0 1.5rem;
   }
 }
+
+/* ─── Dark Mode Overrides ────────────────────────────── */
+
+[data-theme="dark"] .cursor-blob {
+  background: var(--rose);
+  mix-blend-mode: screen;
+}
+
+[data-theme="dark"] .cursor-blob.has-label {
+  background: rgba(201,122,98,0.35);
+}
+
+[data-theme="dark"] .cursor-label {
+  color: var(--rose-deep);
+}
+
+[data-theme="dark"] .navbar {
+  background: rgba(22,18,14,0.72);
+}
+
+[data-theme="dark"] .navbar::after {
+  background: rgba(240,235,227,0.1);
+}
+
+[data-theme="dark"] .nav-item-word {
+  color: var(--ink);
+}
+
+[data-theme="dark"] .navbar-monogram {
+  color: var(--ink);
+}
+
+[data-theme="dark"] .mobile-dropdown {
+  background: rgba(22,18,14,0.96);
+  border-color: rgba(240,235,227,0.1);
+}
+
+[data-theme="dark"] .mobile-dropdown-item {
+  border-bottom-color: rgba(240,235,227,0.06);
+}
+
+[data-theme="dark"] .mobile-dropdown-item:hover {
+  background: rgba(201,122,98,0.08);
+}
+
+[data-theme="dark"] .mobile-dropdown-divider {
+  background: rgba(240,235,227,0.08);
+}
+
+[data-theme="dark"] .project-card {
+  background: var(--bg);
+}
+
+[data-theme="dark"] .project-card:hover {
+  background: #1E1812;
+}
+
+[data-theme="dark"] .case-backdrop {
+  background: rgba(10,8,6,0.5);
+}
+
+[data-theme="dark"] .case-card {
+  background: #1A1510;
+  border-color: rgba(240,235,227,0.1);
+}
+
+/* Skills pills */
+[data-theme="dark"] .skill-pill.rose {
+  background: rgba(201,122,98,0.12);
+  border-color: rgba(201,122,98,0.35);
+  color: var(--rose-deep);
+}
+
+[data-theme="dark"] .skill-pill.slate {
+  background: rgba(122,143,168,0.12);
+  border-color: rgba(122,143,168,0.3);
+  color: var(--slate-deep);
+}
+
+[data-theme="dark"] .form-input,
+[data-theme="dark"] .form-textarea {
+  color: var(--ink);
+}
+
+[data-theme="dark"] .form-submit {
+  border-color: rgba(240,235,227,0.3);
+  color: var(--ink);
+}
+
+[data-theme="dark"] .form-submit:hover:not(:disabled) {
+  border-color: var(--rose);
+  color: var(--rose);
+}
+
+[data-theme="dark"] .elsewhere-item {
+  border-bottom-color: rgba(240,235,227,0.06);
+}
+
+[data-theme="dark"] .projects-grid {
+  background: rgba(240,235,227,0.08);
+}
