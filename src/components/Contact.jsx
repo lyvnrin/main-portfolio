@@ -13,6 +13,27 @@ const styles = `
     border-top: 1px solid var(--rule);
   }
 
+  .contact-note {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin-bottom: 2.5rem;
+    opacity: 0.8;
+    line-height: 1.6;
+  }
+
+  .contact-note-link {
+    color: var(--muted);
+    border-bottom: 1px solid rgba(107,97,87,0.3);
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .contact-note-link:hover {
+    color: var(--rose);
+    border-bottom-color: var(--rose);
+  }
+
   .contact-grid {
     display: grid;
     grid-template-columns: 1fr 340px;
@@ -269,12 +290,12 @@ const styles = `
 `;
 
 const elsewhereLinks = [
-  { platform: 'View My CV',       handle: 'Lavanya Kamble.pdf', href: '/LavanyaKamble_CV.pdf', target: '_blank' },
-  { platform: 'LinkedIn', handle: 'lavanyakamble',      href: 'https://www.linkedin.com/in/lavanyakamble/', target: '_blank' },
-  { platform: 'GitHub',   handle: 'lyvnrin',            href: 'https://github.com/lyvnrin', target: '_blank' },
-  { platform: 'Notion',   handle: 'visual portfolio',          href: 'https://lavanya-k-portfolio.notion.site/Welcome-to-My-Portfolio-303e4dd70aaf80499338ee34e86937a6', target: '_blank' },
-  { platform: 'Credly',    handle: 'lavanya k', href: 'https://www.credly.com/users/lavanya-kamble.73b64a62', target: '_blank' },
-  { platform: 'Email',    handle: 'lavanya.kamble6@gmail.com', href: 'mailto:lavanya.kamble6@gmail.com', target: '_self' },
+  { platform: 'View My CV',  handle: 'Lavanya Kamble.pdf',       href: '/LavanyaKamble_CV.pdf',                                                                         target: '_blank' },
+  { platform: 'LinkedIn',    handle: 'lavanyakamble',             href: 'https://www.linkedin.com/in/lavanyakamble/',                                                    target: '_blank' },
+  { platform: 'GitHub',      handle: 'lyvnrin',                   href: 'https://github.com/lyvnrin',                                                                    target: '_blank' },
+  { platform: 'Notion',      handle: 'visual portfolio',          href: 'https://lavanya-k-portfolio.notion.site/Welcome-to-My-Portfolio-303e4dd70aaf80499338ee34e86937a6', target: '_blank' },
+  { platform: 'Credly',      handle: 'lavanya k',                 href: 'https://www.credly.com/users/lavanya-kamble.73b64a62',                                          target: '_blank' },
+  { platform: 'Email',       handle: 'lavanya.kamble6@gmail.com', href: 'mailto:lavanya.kamble6@gmail.com',                                                              target: '_self'  },
 ];
 
 export default function Contact() {
@@ -307,8 +328,11 @@ export default function Contact() {
     <section id="contact" className="contact-section">
       <div className="section-wrap">
         <SectionHeader number="IV" title="Correspondence" />
-        <div className="contact-grid">
+        <p className="contact-note">
+          † the form sends directly - no email client needed. if you prefer to write directly, please ensure your broswer's Protocol Handlers allow mail links.
+        </p>
 
+        <div className="contact-grid">
           <div className="contact-form-wrap reveal">
             {status === 'success' ? (
               <div className="contact-success">
@@ -385,7 +409,7 @@ export default function Contact() {
                 </button>
 
                 {status === 'error' && (
-                  <p className="form-error">something went wrong - try emailing directly.</p>
+                  <p className="form-error">something went wrong — try emailing directly.</p>
                 )}
               </>
             )}
@@ -410,7 +434,6 @@ export default function Contact() {
               ))}
             </ul>
           </aside>
-
         </div>
       </div>
     </section>

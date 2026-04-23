@@ -1,4 +1,3 @@
-// src/components/Marquee.jsx
 import { useEffect, useRef } from 'react';
 
 const styles = `
