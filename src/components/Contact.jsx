@@ -273,6 +273,7 @@ const elsewhereLinks = [
   { platform: 'LinkedIn', handle: 'lavanyakamble',      href: 'https://www.linkedin.com/in/lavanyakamble/', target: '_blank' },
   { platform: 'GitHub',   handle: 'lyvnrin',            href: 'https://github.com/lyvnrin', target: '_blank' },
   { platform: 'Notion',   handle: 'visual portfolio',          href: 'https://lavanya-k-portfolio.notion.site/Welcome-to-My-Portfolio-303e4dd70aaf80499338ee34e86937a6', target: '_blank' },
+  { platform: 'Credly',    handle: 'lavanya k', href: 'https://www.credly.com/users/lavanya-kamble.73b64a62', target: '_blank' },
   { platform: 'Email',    handle: 'lavanya.kamble6@gmail.com', href: 'mailto:lavanya.kamble6@gmail.com', target: '_self' },
 ];
 

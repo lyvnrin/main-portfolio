@@ -280,7 +280,7 @@ const navItems = [
   { label: 'about',   pos: 'n.', href: '#about' },
   { label: 'skills',  pos: 'n.', href: '#skills' },
   { label: 'work',    pos: 'n.', href: '#projects' },
-  { label: 'contact', pos: 'v.', href: '#contact' },
+  { label: 'contact', pos: 'n.', href: '#contact' },
 ];
 
 const SECTIONS = ['about', 'skills', 'projects', 'contact'];

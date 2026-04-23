@@ -89,10 +89,62 @@ const styles = `
     color: var(--ink);
   }
 
+  /* ── Meta strip ── */
+  .about-meta-strip {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .meta-item dt {
+    font-family: var(--font-sc);
+    font-size: 0.58rem;
+    letter-spacing: 0.16em;
+    color: var(--muted);
+    margin-bottom: 0.65rem;
+  }
+
+  .meta-item dd {
+    font-family: var(--font-serif);
+    font-size: 0.95rem;
+    color: var(--ink);
+    line-height: 1.6;
+  }
+
+  .meta-item dd span {
+    display: block;
+  }
+
+  .meta-item dd .meta-sub {
+    font-style: italic;
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin-top: 0.1rem;
+  }
+
+  .meta-item dd .meta-entry {
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(31,26,21,0.06);
+  }
+
+  .meta-item dd .meta-entry:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+
   @media (max-width: 900px) {
     .about-grid {
       grid-template-columns: 1fr;
       gap: 3rem;
+    }
+    .about-meta-strip {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
     }
   }
 `;
@@ -126,7 +178,7 @@ export default function About() {
               <span className="about-para-label">¶ I.</span>
               <p className="about-para-text">
                 Hi, I'm a penultimate year Computer Science student at Royal Holloway,
-                University of London - presently absorbed in the art of making machines
+                University of London. I'm presently absorbed in the art of making machines
                 do interesting things. My work sits at the intersection of data systems,
                 clean interfaces, and the stubborn belief that software should be both
                 rigorous and human.
@@ -146,13 +198,51 @@ export default function About() {
             <div className="about-para reveal reveal-delay-3">
               <span className="about-para-label">¶ III.</span>
               <p className="about-para-text">
-                I'm open to summer 2026 internships - full-stack, data, or anywhere the
+                I'm open to summer 2026 internships: full-stack, data, or anywhere the
                 problems are genuinely hard. Preferably somewhere with a good coffee
                 situation, real ownership, and things worth building.
               </p>
             </div>
           </div>
         </div>
+
+        <dl className="about-meta-strip reveal reveal-delay-2">
+          <div className="meta-item">
+            <dt>Education</dt>
+            <dd>
+              <div className="meta-entry">
+                <span>BSc Computer Science</span>
+                <span className="meta-sub">Royal Holloway, University of London</span>
+                <span className="meta-sub">2024 – Present</span>
+              </div>
+            </dd>
+          </div>
+
+          <div className="meta-item">
+            <dt>Experience</dt>
+            <dd>
+              <div className="meta-entry">
+                <span>BFSI Data Lab Spring Intern</span>
+                <span className="meta-sub">TCS · 2025</span>
+              </div>
+              <div className="meta-entry">
+                <span>FinTech Work Experience</span>
+                <span className="meta-sub">HSBC · 2022</span>
+              </div>
+            </dd>
+          </div>
+
+          <div className="meta-item">
+            <dt>Currently</dt>
+            <dd>
+              <div className="meta-entry">
+                <span>Penultimate year</span>
+                <span className="meta-sub">Open to Summer 2026</span>
+                <span className="meta-sub">London, England</span>
+              </div>
+            </dd>
+          </div>
+        </dl>
       </div>
     </section>
   );
