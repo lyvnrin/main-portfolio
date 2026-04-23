@@ -1,5 +1,3 @@
-/* src/styles/global.css */
-
 /* ─── Design Tokens ─────────────────────────────────── */
 :root {
   --bg: #FAF7F2;
@@ -51,6 +49,12 @@ html {
   scroll-behavior: smooth;
   font-size: 16px;
   cursor: none;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar {
+  display: none;
 }
 
 html, a, button {
@@ -67,6 +71,12 @@ body {
   transition: background 0.4s ease, color 0.4s ease;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  scrollbar-width: none; 
+  -ms-overflow-style: none;
+}
+
+body::-webkit-scrollbar {
+  display: none;
 }
 
 body.modal-open {
