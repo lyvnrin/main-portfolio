@@ -116,11 +116,10 @@ export default function About() {
         <div className="about-grid">
           <div className="about-left reveal">
             <blockquote className="about-pull-quote">
-              I write code the way I write prose  with intention, rhythm, and
-              a refusal to let the first draft be the last.
+              I'm most at home in the space between a question and the system that answers it.
             </blockquote>
             <p className="about-margin-note">
-               — usually realised at 2am, when the bug turns out to be a missing semicolon.
+              - that space is usually a FastAPI route and three stack overflows.
             </p>
           </div>
 
