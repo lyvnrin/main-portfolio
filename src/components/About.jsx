@@ -55,8 +55,6 @@ const styles = `
 
   .about-margin-note {
     margin-top: 2rem;
-    transform: rotate(-2deg);
-    transform-origin: left;
     font-family: var(--font-serif);
     font-style: italic;
     font-size: 0.85rem;
