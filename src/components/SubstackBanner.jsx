@@ -1,4 +1,3 @@
-// src/components/SubstackBanner.jsx
 import { useEffect } from 'react';
 import { useRevealElements } from '../hooks/useReveal.js';
 
@@ -57,7 +56,6 @@ const styles = `
     color: var(--rose);
   }
 
-  /* ── Recommended reading card ── */
   .substack-card {
     border: 1px solid var(--rule);
     padding: 1.25rem 1.5rem;
@@ -186,7 +184,7 @@ export default function SubstackBanner() {
             <span className="substack-rule-short" />
             <p className="substack-text">
               I also write on technology, culture, and what happens
-              when you think about them <em>together.</em> Essays at cs-unfiltered.md
+              when you think about them <em>together.</em> Essays at The SWE Scriptures
             </p>
           </div>
 
