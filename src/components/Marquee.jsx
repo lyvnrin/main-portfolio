@@ -63,7 +63,7 @@ const styles = `
 const items = [
   'available for summer 2026',
   'cs @ royal holloway',
-  'rose rendered',
+  'the swe scriptures',
   'lyvnrin on github',
   'building things that matter',
   'london, england',
