@@ -184,7 +184,7 @@ export default function SubstackBanner() {
             <span className="substack-rule-short" />
             <p className="substack-text">
               I also write on technology, culture, and what happens
-              when you think about them <em>together.</em> Essays at The SWE Scriptures
+              when you think about them together. Find on <em>Substack</em> essays at The SWE Scriptures!
             </p>
           </div>
 
