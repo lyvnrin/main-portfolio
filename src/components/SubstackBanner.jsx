@@ -189,7 +189,7 @@ export default function SubstackBanner() {
           </div>
 
           <a
-            href="https://csunfiltered.substack.com/p/the-vampirism-of-chrome"
+            href="https://theswescriptures.substack.com/p/the-vampirism-of-chrome"
             target="_blank"
             rel="noopener noreferrer"
             className="substack-card"
