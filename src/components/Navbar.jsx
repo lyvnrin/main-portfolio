@@ -1,4 +1,3 @@
-// src/components/Navbar.jsx
 import { useEffect, useState, useRef } from 'react';
 import { useTheme } from '../hooks/useTheme.js';
 
@@ -220,18 +219,20 @@ const styles = `
     margin: 0;
   }
 
+  .mobile-theme-label {
+    font-family: var(--font-sc);
+    font-size: 0.62rem;
+    letter-spacing: 0.14em;
+    color: var(--ink);
+    opacity: 0.7;
+  }
+
   .mobile-theme-row {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0.9rem 1.25rem;
-  }
-
-  .mobile-theme-label {
-    font-family: var(--font-sc);
-    font-size: 0.62rem;
-    letter-spacing: 0.12em;
-    color: var(--muted);
+    border-top: 1px solid rgba(240,235,227,0.06);
   }
 
   .mobile-theme-toggle {
@@ -409,7 +410,7 @@ export default function Navbar() {
             <div className="mobile-dropdown-divider" />
             <div className="mobile-theme-row">
               <span className="mobile-theme-label">
-                {theme === 'light' ? 'light mode' : 'dark mode'}
+                {theme === 'light' ? 'dark mode' : 'light mode'}
               </span>
               <button
                 className="mobile-theme-toggle"

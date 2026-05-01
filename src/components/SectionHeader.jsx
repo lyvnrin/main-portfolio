@@ -10,7 +10,8 @@ const styles = `
     font-family: var(--font-sc);
     font-size: 0.85rem;
     letter-spacing: 0.14em;
-    color: var(--muted);
+    color: var(--ink);
+    font-weight: bolder;
     white-space: nowrap;
     flex-shrink: 0;
   }

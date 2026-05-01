@@ -13,7 +13,10 @@ const styles = `
     pointer-events: none;
     z-index: 99999;
     transform: translate(-50%, -50%);
-    transition: width 0.25s var(--ease-out-expo), height 0.25s var(--ease-out-expo), background 0.25s ease, opacity 0.3s ease;
+    transition: width 0.25s var(--ease-out-expo),
+                height 0.25s var(--ease-out-expo),
+                background 0.25s ease,
+                opacity 0.3s ease;
     will-change: transform;
   }
 
@@ -21,6 +24,19 @@ const styles = `
     width: 80px;
     height: 80px;
     background: var(--rose-soft);
+  }
+
+  .cursor-inner-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--ink);
+    pointer-events: none;
+    z-index: 100001;
+    transform: translate(-50%, -50%);
   }
 
   .cursor-label {
@@ -48,9 +64,19 @@ const styles = `
 
 export default function Cursor() {
   const blobRef = useRef(null);
+  const dotRef = useRef(null);
   const labelRef = useRef(null);
-  const posRef = useRef({ x: window.innerWidth / 2, y: window.innerHeight / 2 });
-  const targetRef = useRef({ x: window.innerWidth / 2, y: window.innerHeight / 2 });
+
+  const posRef = useRef({
+    x: window.innerWidth / 2,
+    y: window.innerHeight / 2
+  });
+
+  const targetRef = useRef({
+    x: window.innerWidth / 2,
+    y: window.innerHeight / 2
+  });
+
   const rafRef = useRef(null);
   const labelTextRef = useRef('');
 
@@ -66,30 +92,47 @@ export default function Cursor() {
       const label = el ? el.getAttribute('data-cursor') : '';
       labelTextRef.current = label;
 
-      if (labelRef.current) {
+      if (labelRef.current && blobRef.current) {
         if (label) {
           labelRef.current.textContent = label;
           labelRef.current.classList.add('visible');
-          blobRef.current?.classList.add('has-label');
+          blobRef.current.classList.add('has-label');
         } else {
           labelRef.current.classList.remove('visible');
-          blobRef.current?.classList.remove('has-label');
+          blobRef.current.classList.remove('has-label');
         }
       }
     };
 
     const tick = () => {
-      const lerp = 0.12;
+      const lerp = 0.1;
+
       posRef.current.x += (targetRef.current.x - posRef.current.x) * lerp;
       posRef.current.y += (targetRef.current.y - posRef.current.y) * lerp;
 
       const { x, y } = posRef.current;
+      const { x: tx, y: ty } = targetRef.current;
+
+      const dx = tx - x;
+      const dy = ty - y;
+      const speed = Math.sqrt(dx * dx + dy * dy);
+      const scale = Math.min(1 + speed * 0.002, 1.15);
+
       if (blobRef.current) {
-        blobRef.current.style.transform = `translate(calc(${x}px - 50%), calc(${y}px - 50%))`;
+        blobRef.current.style.transform =
+          `translate(calc(${x}px - 50%), calc(${y}px - 50%)) scale(${scale})`;
       }
+
+      if (dotRef.current) {
+        dotRef.current.style.transform =
+          `translate(calc(${tx}px - 50%), calc(${ty}px - 50%))`;
+      }
+
       if (labelRef.current) {
-        labelRef.current.style.transform = `translate(calc(${x}px - 50%), calc(${y}px - 50%))`;
+        labelRef.current.style.transform =
+          `translate(calc(${x}px - 50%), calc(${y}px - 50%))`;
       }
+
       rafRef.current = requestAnimationFrame(tick);
     };
 
@@ -106,6 +149,7 @@ export default function Cursor() {
   return (
     <>
       <div ref={blobRef} className="cursor-blob" />
+      <div ref={dotRef} className="cursor-inner-dot" />
       <div ref={labelRef} className="cursor-label" />
     </>
   );
