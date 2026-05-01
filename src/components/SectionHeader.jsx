@@ -8,7 +8,7 @@ const styles = `
 
   .section-header-label {
     font-family: var(--font-sc);
-    font-size: 0.72rem;
+    font-size: 0.85rem;
     letter-spacing: 0.14em;
     color: var(--muted);
     white-space: nowrap;
