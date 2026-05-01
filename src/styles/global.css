@@ -1,3 +1,5 @@
+/* src/styles/global.css */
+
 /* ─── Design Tokens ─────────────────────────────────── */
 :root {
   --bg: #FAF7F2;
@@ -47,7 +49,7 @@
 
 html {
   scroll-behavior: smooth;
-  font-size: 16px;
+  font-size: 20px;
   cursor: none;
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -68,10 +70,10 @@ body {
   font-weight: 400;
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
-  transition: background 0.4s ease, color 0.4s ease;
   -moz-osx-font-smoothing: grayscale;
+  transition: background 0.4s ease, color 0.4s ease;
   overflow-x: hidden;
-  scrollbar-width: none; 
+  scrollbar-width: none;
   -ms-overflow-style: none;
 }
 
@@ -182,6 +184,7 @@ body::before {
 
 /* ─── Dark Mode Overrides ────────────────────────────── */
 
+/* Cursor */
 [data-theme="dark"] .cursor-blob {
   background: var(--rose);
   mix-blend-mode: screen;
@@ -195,6 +198,7 @@ body::before {
   color: var(--rose-deep);
 }
 
+/* Navbar */
 [data-theme="dark"] .navbar {
   background: rgba(22,18,14,0.72);
 }
@@ -211,6 +215,7 @@ body::before {
   color: var(--ink);
 }
 
+/* Mobile dropdown */
 [data-theme="dark"] .mobile-dropdown {
   background: rgba(22,18,14,0.96);
   border-color: rgba(240,235,227,0.1);
@@ -228,6 +233,7 @@ body::before {
   background: rgba(240,235,227,0.08);
 }
 
+/* Projects */
 [data-theme="dark"] .project-card {
   background: var(--bg);
 }
@@ -236,6 +242,11 @@ body::before {
   background: #1E1812;
 }
 
+[data-theme="dark"] .projects-grid {
+  background: rgba(240,235,227,0.08);
+}
+
+/* Case study modal */
 [data-theme="dark"] .case-backdrop {
   background: rgba(10,8,6,0.5);
 }
@@ -258,13 +269,39 @@ body::before {
   color: var(--slate-deep);
 }
 
-[data-theme="dark"] .form-input,
-[data-theme="dark"] .form-textarea {
+/* Contact note */
+[data-theme="dark"] .contact-note {
+  color: var(--ink);
+  opacity: 0.65;
+}
+
+/* Form */
+[data-theme="dark"] .form-label-word {
   color: var(--ink);
 }
 
+[data-theme="dark"] .form-label-pos {
+  color: var(--rose-deep);
+}
+
+[data-theme="dark"] .form-input,
+[data-theme="dark"] .form-textarea {
+  color: var(--ink);
+  border-bottom-color: rgba(240,235,227,0.2);
+}
+
+[data-theme="dark"] .form-input::placeholder,
+[data-theme="dark"] .form-textarea::placeholder {
+  color: var(--muted);
+  opacity: 0.6;
+}
+
+[data-theme="dark"] .form-ornament-line {
+  background: rgba(240,235,227,0.15);
+}
+
 [data-theme="dark"] .form-submit {
-  border-color: rgba(240,235,227,0.3);
+  border-color: rgba(240,235,227,0.25);
   color: var(--ink);
 }
 
@@ -273,10 +310,20 @@ body::before {
   color: var(--rose);
 }
 
-[data-theme="dark"] .elsewhere-item {
-  border-bottom-color: rgba(240,235,227,0.06);
+/* Elsewhere */
+[data-theme="dark"] .elsewhere-label {
+  color: var(--ink);
+  opacity: 0.6;
 }
 
-[data-theme="dark"] .projects-grid {
-  background: rgba(240,235,227,0.08);
+[data-theme="dark"] .elsewhere-platform {
+  color: var(--muted);
+}
+
+[data-theme="dark"] .elsewhere-handle {
+  color: var(--ink);
+}
+
+[data-theme="dark"] .elsewhere-item {
+  border-bottom-color: rgba(240,235,227,0.08);
 }
