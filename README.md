@@ -1,22 +1,22 @@
-# Lavanya Kamble - Portfolio
+# Lavanya Kamble | Portfolio
 
-Personal portfolio site. Aesthetic: editorial, warm, typeset.
+A portfolio that feels less like a template and more like a byline. React + Vite, vanilla CSS, typeset with Cormorant and Inter. No UI libraries - everything here is deliberate.
 
-## Stack
+## stack
 
 - React 18 + Vite
 - Vanilla CSS (no Tailwind, no UI libraries)
-- EmailJS for contact form
+- EmailJS for the contact form
 - Cormorant Garamond + Cormorant SC + Inter via Google Fonts
 
-## Getting Started
+## getting started
 
 ```bash
 npm install
 npm run dev
 ```
 
-## Structure
+## structure
 
 ```
 src/
@@ -40,17 +40,19 @@ src/
     └── global.css        
 ```
 
-## Features
+## features
 
-- Light/dark mode toggle (☽/☀) in navbar, persisted to localStorage
+- Light/dark mode toggle (☽/☀) in the navbar, persisted to localStorage
 - Custom blob cursor with context labels via `data-cursor` attributes
-- Scroll-reveal animations on all sections
-- Case study modal with frosted backdrop (closes on Esc or backdrop click)
-- EmailJS contact form with sending/success/error states
+- Scroll-reveal animations on every section
+- Case study modal with frosted backdrop - closes on Esc or backdrop click
+- EmailJS contact form with sending/success/error states handled
 - Infinite marquee ticker
-- Fully responsive (desktop-first)
+- Fully responsive, designed desktop-first
 
-## Deployment
+## deployment
+
+Deployed on Vercel. To run locally:
 
 ```bash
 npm run dev
