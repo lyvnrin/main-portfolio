@@ -1,6 +1,6 @@
 # Lavanya Kamble | Portfolio
 
-A portfolio that feels less like a template and more like a byline. React + Vite, vanilla CSS, typeset with Cormorant and Inter. No UI libraries - everything here is deliberate.
+A portfolio that feels less like a template and more like a byline. React + Vite, vanilla CSS, typeset with Cormorant and Inter. 
 
 ## stack
 
