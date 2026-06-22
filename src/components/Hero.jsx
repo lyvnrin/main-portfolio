@@ -111,7 +111,7 @@ const styles = `
 
   .hero-def-text {
     font-family: var(--font-serif);
-    font-size: clamp(1.1rem, 2.2vw, 1.45rem);
+    font-size: clamp(1.2rem, 2.4vw, 1.55rem);
     color: var(--ink);
     line-height: 1.5;
   }

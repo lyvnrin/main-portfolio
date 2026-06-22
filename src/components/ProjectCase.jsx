@@ -193,7 +193,7 @@ const styles = `
 
   .case-prose {
     font-family: var(--font-serif);
-    font-size: 1.05rem;
+    font-size: 1.15rem;
     line-height: 1.75;
     color: var(--ink);
   }

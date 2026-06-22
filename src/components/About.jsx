@@ -84,7 +84,7 @@ const styles = `
 
   .about-para-text {
     font-family: var(--font-serif);
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     line-height: 1.75;
     color: var(--ink);
   }

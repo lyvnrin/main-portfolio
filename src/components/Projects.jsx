@@ -120,7 +120,7 @@ const styles = `
   .project-descriptor {
     font-family: var(--font-serif);
     font-style: italic;
-    font-size: 0.95rem;
+    font-size: 1.05rem;
     color: var(--muted);
     line-height: 1.5;
     flex: 1;
