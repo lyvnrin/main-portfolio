@@ -166,20 +166,28 @@ const styles = `
   }
 
   .case-body {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 2.5rem;
     padding: 2.5rem 3.5rem;
+    align-items: start;
+  }
+
+  .case-body-text {
+    display: flex;
+    flex-direction: column;
   }
 
   .case-body-row {
-    display: grid;
-    grid-template-columns: 180px 1fr;
-    gap: 2rem;
-    margin-bottom: 2.5rem;
-    padding-bottom: 2.5rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
     border-bottom: 1px solid rgba(31,26,21,0.07);
   }
 
   .case-body-row:last-of-type {
     border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
   }
 
   .case-section-label {
@@ -187,15 +195,41 @@ const styles = `
     font-size: 0.6rem;
     letter-spacing: 0.14em;
     color: var(--muted);
-    padding-top: 0.35rem;
     line-height: 1.5;
+    margin-bottom: 0.6rem;
+    display: block;
   }
 
   .case-prose {
     font-family: var(--font-serif);
-    font-size: 1.15rem;
-    line-height: 1.75;
+    font-size: 1.05rem;
+    line-height: 1.65;
     color: var(--ink);
+  }
+
+  .case-body-images {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    height: 100%;
+  }
+
+  .case-section-image {
+    width: 100%;
+    flex: 1;
+    min-height: 140px;
+    background: var(--rule);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .case-section-image-label {
+    font-family: var(--font-sc);
+    font-size: 0.58rem;
+    letter-spacing: 0.14em;
+    color: var(--muted);
+    opacity: 0.6;
   }
 
   .case-pullquote {
@@ -261,8 +295,9 @@ const styles = `
     .case-backdrop { padding: 1rem 0.75rem; }
     .case-header { padding: 2.5rem 1.75rem 2rem; }
     .case-meta { grid-template-columns: 1fr 1fr; padding: 1.5rem 1.75rem; }
-    .case-body { padding: 1.75rem; }
-    .case-body-row { grid-template-columns: 1fr; gap: 0.5rem; }
+    .case-body { grid-template-columns: 1fr; padding: 1.75rem; gap: 1.75rem; }
+    .case-body-images { flex-direction: row; height: auto; }
+    .case-section-image { flex: 1; min-height: 0; aspect-ratio: 4 / 3; }
     .case-pullquote { margin: 0 1.75rem 2rem; }
     .case-footer { padding: 1.5rem 1.75rem; flex-direction: column; gap: 1rem; align-items: flex-start; }
   }
@@ -336,12 +371,22 @@ export default function ProjectCase({ project, onClose }) {
         </dl>
 
         <div className="case-body">
-          {project.sections.map((section, i) => (
-            <div key={i} className="case-body-row">
-              <p className="case-section-label">§ {String(i + 1).padStart(2, '0')} · {section.heading}</p>
-              <p className="case-prose">{section.content}</p>
-            </div>
-          ))}
+          <div className="case-body-text">
+            {project.sections.map((section, i) => (
+              <div key={i} className="case-body-row">
+                <p className="case-section-label">§ {String(i + 1).padStart(2, '0')} · {section.heading}</p>
+                <p className="case-prose">{section.content}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="case-body-images">
+            {Array.from({ length: Math.min(2, project.sections.length) }).map((_, i) => (
+              <div key={i} className="case-section-image">
+                <span className="case-section-image-label">image</span>
+              </div>
+            ))}
+          </div>
         </div>
 
         {project.pullquote && (

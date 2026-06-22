@@ -12,45 +12,33 @@ const styles = `
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 5rem;
-    align-items: start;
+    align-items: stretch;
   }
 
   .about-left {
     position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
   }
 
-  .about-pull-quote {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-weight: 300;
-    font-size: clamp(1.6rem, 3.2vw, 2.4rem);
-    line-height: 1.35;
-    color: var(--ink);
-    position: relative;
-    padding-left: 1rem;
+  .about-photo {
+    width: 100%;
+    flex: 1;
+    min-height: 280px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  .about-pull-quote::before {
-    content: '\\201C';
-    font-family: var(--font-serif);
-    font-size: 5rem;
-    color: var(--rose);
-    position: absolute;
-    top: -1.2rem;
-    left: -0.5rem;
-    line-height: 1;
-    font-style: normal;
-  }
-
-  .about-pull-quote::after {
-    content: '\\201D';
-    font-family: var(--font-serif);
-    font-size: 5rem;
-    color: var(--rose);
-    line-height: 0;
-    vertical-align: -1.2em;
-    font-style: normal;
-    margin-left: 0.15em;
+  .about-photo-label {
+    font-family: var(--font-sc);
+    font-size: 0.62rem;
+    letter-spacing: 0.14em;
+    color: var(--muted);
+    opacity: 0.6;
   }
 
   .about-margin-note {
@@ -201,6 +189,13 @@ const styles = `
       grid-template-columns: 1fr;
       gap: 3rem;
     }
+    .about-left {
+      height: auto;
+    }
+    .about-photo {
+      flex: none;
+      aspect-ratio: 4 / 3;
+    }
     .about-meta-strip {
       grid-template-columns: 1fr;
       gap: 1.5rem;
@@ -224,11 +219,11 @@ export default function About() {
         <SectionHeader number="I" title="On the writer" />
         <div className="about-grid">
           <div className="about-left reveal">
-            <blockquote className="about-pull-quote">
-              I'm most at home in the space between a question and the system that answers it.
-            </blockquote>
+            <div className="about-photo">
+              <span className="about-photo-label">image</span>
+            </div>
             <p className="about-margin-note">
-              - that space is usually a FastAPI route and three stack overflows.
+              - taken somewhere between a deploy and a deadline.
             </p>
 
             <div className="about-cf reveal reveal-delay-2">
