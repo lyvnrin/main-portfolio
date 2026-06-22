@@ -65,6 +65,28 @@ const styles = `
     max-width: 80%;
   }
 
+  .about-cf {
+    margin-top: 2rem;
+    border-left: 1px solid rgba(184,98,74,0.4);
+    padding-left: 0.75rem;
+  }
+
+  .about-cf-label {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 0.85rem;
+    color: var(--rose-deep);
+    margin-right: 0.5em;
+  }
+
+  .about-cf-text {
+    display: inline;
+    font-family: var(--font-serif);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+
   .about-right {
     padding-top: 0.5rem;
   }
@@ -87,6 +109,34 @@ const styles = `
     font-size: 1.2rem;
     line-height: 1.75;
     color: var(--ink);
+  }
+
+  .about-area-term {
+    position: relative;
+    color: var(--ink);
+    transition: color 0.3s ease;
+  }
+
+  .about-area-term::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -0.05em;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s var(--ease-out-expo);
+  }
+
+  .about-area-term:hover {
+    color: var(--rose);
+    font-style: italic;
+  }
+
+  .about-area-term:hover::after {
+    transform: scaleX(1);
   }
 
   /* ── Meta strip ── */
@@ -171,6 +221,17 @@ export default function About() {
             <p className="about-margin-note">
               - that space is usually a FastAPI route and three stack overflows.
             </p>
+
+            <div className="about-cf reveal reveal-delay-2">
+              <span className="about-cf-label">cf.</span>
+              <p className="about-cf-text">
+                <span className="about-area-term">Data Science</span>,{' '}
+                <span className="about-area-term">Research</span>,{' '}
+                <span className="about-area-term">Web Development</span>,{' '}
+                <span className="about-area-term">Financial Systems</span>,{' '}
+                <span className="about-area-term">Systems Thinking</span>
+              </p>
+            </div>
           </div>
 
           <div className="about-right">
@@ -198,11 +259,12 @@ export default function About() {
             <div className="about-para reveal reveal-delay-3">
               <span className="about-para-label">¶ III.</span>
               <p className="about-para-text">
-                I'm open to summer 2026 internships: full-stack, data, or anywhere the
-                problems are genuinely hard. Preferably somewhere with a good coffee
-                situation, real ownership, and things worth building.
+                This summer, I'm interning at TCS as a Business Analyst (AI & ST),
+                working at the intersection of emerging tech and strategy. Still chasing
+                problems that are genuinely hard, ideally with good coffee nearby.
               </p>
             </div>
+
           </div>
         </div>
 
@@ -222,6 +284,10 @@ export default function About() {
             <dt>Experience</dt>
             <dd>
               <div className="meta-entry">
+                <span>Business Analyst Intern, AI & ST</span>
+                <span className="meta-sub">TCS · Summer 2026</span>
+              </div>
+              <div className="meta-entry">
                 <span>BFSI Data Lab Spring Intern</span>
                 <span className="meta-sub">TCS · 2025</span>
               </div>
@@ -237,7 +303,7 @@ export default function About() {
             <dd>
               <div className="meta-entry">
                 <span>Penultimate year</span>
-                <span className="meta-sub">Open to Summer 2026</span>
+                <span className="meta-sub">Interning at TCS, Summer 2026</span>
                 <span className="meta-sub">London, England</span>
               </div>
             </dd>
