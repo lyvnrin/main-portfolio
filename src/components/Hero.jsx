@@ -11,7 +11,7 @@ const styles = `
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 0 3rem;
+    padding: 0 3rem 6rem;
     max-width: 1200px;
     margin: 0 auto;
     width: 100%;

@@ -16,9 +16,9 @@ export default function App() {
     <>
       <Cursor />
       <ScrollProgress />
-      <Marquee />
       <Navbar />
       <main>
+        <Marquee />
         <Hero />
         <About />
         <SubstackBanner />

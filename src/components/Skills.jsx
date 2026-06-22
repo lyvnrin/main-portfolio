@@ -50,83 +50,51 @@ const styles = `
   .skill-pills {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem 0.4rem;
-    align-items: flex-start;
+    gap: 0.6rem;
   }
 
   .skill-pill {
     display: inline-block;
-    padding: 0.3em 0.75em;
-    border-radius: 6px;
+    padding: 0.5rem 1.1rem;
+    border: 1px solid var(--rule);
     font-family: var(--font-serif);
     font-size: 0.92rem;
     line-height: 1.4;
-    transition: transform 0.2s ease;
+    color: var(--ink);
+    transition: border-color 0.3s ease, color 0.3s ease, background 0.3s ease, transform 0.2s ease;
   }
 
   .skill-pill.rose {
-    border: 1px solid rgba(184,98,74,0.45);
-    background: rgba(184,98,74,0.08);
+    border-color: rgba(184,98,74,0.4);
     color: var(--rose-deep);
   }
 
   .skill-pill.slate {
-    border: 1px solid rgba(90,107,130,0.4);
-    background: rgba(90,107,130,0.08);
+    border-color: rgba(90,107,130,0.4);
     color: var(--slate-deep);
   }
 
-  .skill-pill:hover {
-    transform: translateY(-2px) !important;
+  .skill-pill.rose:hover {
+    border-color: var(--rose);
+    background: var(--rose);
+    color: var(--bg);
+    transform: translateY(-2px);
+  }
+
+  .skill-pill.slate:hover {
+    border-color: var(--slate);
+    background: var(--slate);
+    color: var(--bg);
+    transform: translateY(-2px);
   }
 `;
 
 const categories = [
-  {
-    label: 'DATA',
-    dot: 'rose',
-    skills: ['NumPy', 'PostgreSQL', 'MS Excel'],
-    rotations: [-1.5, 1.2, -0.8],
-    types: ['rose', 'slate', 'rose'],
-    mtops: [0, 4, 2],
-    mlefts: [0, 3, 6],
-  },
-  {
-    label: 'DEPLOYMENT',
-    dot: 'slate',
-    skills: ['FastAPI', 'Flask', 'Vercel'],
-    rotations: [0.9, -1.8, 1.5],
-    types: ['slate', 'rose', 'slate'],
-    mtops: [3, 0, 5],
-    mlefts: [0, 4, 2],
-  },
-  {
-    label: 'DESIGN',
-    dot: 'rose',
-    skills: ['Figma', 'Lovable', 'HTML/CSS'],
-    rotations: [-2, 0.6, 1.8],
-    types: ['rose', 'slate', 'rose'],
-    mtops: [0, 6, 2],
-    mlefts: [2, 0, 5],
-  },
-  {
-    label: 'SCRIPTING',
-    dot: 'slate',
-    skills: ['Python', 'JavaScript', 'Java'],
-    rotations: [1.2, -1, 0.5],
-    types: ['slate', 'rose', 'slate'],
-    mtops: [4, 0, 3],
-    mlefts: [0, 3, 0],
-  },
-  {
-    label: 'TOOLS',
-    dot: 'rose',
-    skills: ['Git', 'Linux/WSL', 'React'],
-    rotations: [-1.8, 1.5, -0.7],
-    types: ['rose', 'slate', 'rose'],
-    mtops: [2, 0, 4],
-    mlefts: [0, 5, 2],
-  },
+  { label: 'DATA', dot: 'rose', skills: ['NumPy', 'PostgreSQL', 'MS Excel'] },
+  { label: 'DEPLOYMENT', dot: 'slate', skills: ['FastAPI', 'Flask', 'Vercel'] },
+  { label: 'DESIGN', dot: 'rose', skills: ['Figma', 'Lovable', 'HTML/CSS'] },
+  { label: 'SCRIPTING', dot: 'slate', skills: ['Python', 'JavaScript', 'Java'] },
+  { label: 'TOOLS', dot: 'rose', skills: ['Git', 'Linux/WSL', 'React'] },
 ];
 
 export default function Skills() {
@@ -152,16 +120,8 @@ export default function Skills() {
                 <div className="skill-cat-rule" />
               </div>
               <div className="skill-pills">
-                {cat.skills.map((skill, si) => (
-                  <span
-                    key={skill}
-                    className={`skill-pill ${cat.types[si]}`}
-                    style={{
-                      transform: `rotate(${cat.rotations[si]}deg)`,
-                      marginTop: `${cat.mtops[si]}px`,
-                      marginLeft: `${cat.mlefts[si]}px`,
-                    }}
-                  >
+                {cat.skills.map((skill) => (
+                  <span key={skill} className={`skill-pill ${cat.dot}`}>
                     {skill}
                   </span>
                 ))}
