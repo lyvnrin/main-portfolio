@@ -7,11 +7,11 @@ const styles = `
   }
 
   .hero {
-    min-height: 100vh;
+    min-height: calc(100vh - 36px);
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 0 3rem 6rem;
+    padding: 0 3rem;
     max-width: 1200px;
     margin: 0 auto;
     width: 100%;
@@ -21,7 +21,6 @@ const styles = `
 
   .hero-wrapper {
     width: 100%;
-    padding-top: 10vh;
   }
 
   .hero-entry-label {
@@ -93,6 +92,13 @@ const styles = `
     margin-bottom: 2rem;
   }
 
+  .hero-definition-row {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
   .hero-definition {
     display: flex;
     align-items: baseline;
@@ -132,12 +138,10 @@ const styles = `
   }
 
   .hero-scroll-hint {
-    position: absolute;
-    bottom: 2.5rem;
-    left: 3rem;
     display: flex;
     align-items: center;
     gap: 1rem;
+    flex-shrink: 0;
     font-family: var(--font-sc);
     font-size: 0.62rem;
     letter-spacing: 0.14em;
@@ -150,27 +154,14 @@ const styles = `
     background: var(--muted);
   }
 
-  .hero-corner-text {
-    position: absolute;
-    bottom: 2.5rem;
-    right: 3rem;
-    font-family: var(--font-sc);
-    font-size: 0.62rem;
-    letter-spacing: 0.12em;
-    color: var(--muted);
-    writing-mode: vertical-rl;
-    text-orientation: mixed;
-  }
-
   @media (max-width: 768px) {
     .hero {
       padding: 0 1.5rem;
     }
-    .hero-scroll-hint {
-      left: 1.5rem;
-    }
-    .hero-corner-text {
-      right: 1.5rem;
+    .hero-definition-row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.25rem;
     }
   }
 `;
@@ -222,22 +213,22 @@ export default function Hero() {
             <span className="hero-pronoun-badge">she / her</span>
           </div>
           <div className="hero-rule" />
-          <div className="hero-definition">
-            <span className="hero-def-num">1.</span>
-            <p className="hero-def-text">
-              <span className={synonymClass}>{synonyms[synIdx]}</span>;
-              documented at the intersection of systems and data. Known to
-              deliver under pressure. Chiefly collaborative.
-            </p>
+          <div className="hero-definition-row">
+            <div className="hero-definition">
+              <span className="hero-def-num">1.</span>
+              <p className="hero-def-text">
+                <span className={synonymClass}>{synonyms[synIdx]}</span>;
+                documented at the intersection of systems and data. Known to
+                deliver under pressure. Chiefly collaborative.
+              </p>
+            </div>
+
+            <div className="hero-scroll-hint">
+              <span className="hero-scroll-hint-line" />
+              scroll to read
+            </div>
           </div>
         </div>
-
-        <div className="hero-scroll-hint">
-          <span className="hero-scroll-hint-line" />
-          scroll to read
-        </div>
-
-        <div className="hero-corner-text">London, England · Vol. I</div>
       </div>
     </header>
   );

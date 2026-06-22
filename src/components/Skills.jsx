@@ -4,7 +4,7 @@ import { useRevealElements } from '../hooks/useReveal.js';
 
 const styles = `
   .skills-section {
-    padding: 4.5rem 0 7rem;
+    padding: 4rem 0;
     border-top: 1px solid var(--rule);
   }
 
@@ -35,9 +35,10 @@ const styles = `
 
   .skill-cat-label {
     font-family: var(--font-sc);
-    font-size: 0.65rem;
+    font-size: 0.72rem;
+    font-weight: 700;
     letter-spacing: 0.16em;
-    color: var(--muted);
+    color: var(--ink);
     flex-shrink: 0;
   }
 
@@ -90,6 +91,7 @@ const styles = `
 `;
 
 const categories = [
+  { label: 'AI', dot: 'slate', skills: ['Claude Code', 'GitHub Copilot'] },
   { label: 'DATA', dot: 'rose', skills: ['NumPy', 'PostgreSQL', 'MS Excel'] },
   { label: 'DEPLOYMENT', dot: 'slate', skills: ['FastAPI', 'Flask', 'Vercel'] },
   { label: 'DESIGN', dot: 'rose', skills: ['Figma', 'Lovable', 'HTML/CSS'] },

@@ -21,10 +21,10 @@
 
 /* ─── Dark Mode Tokens ───────────────────────────────── */
 [data-theme="dark"] {
-  --bg: #16120E;
-  --ink: #F0EBE3;
-  --muted: #9A8F85;
-  --rule: rgba(240,235,227,0.12);
+  --bg: #1B1712;
+  --ink: #E4DCCD;
+  --muted: #A89C8C;
+  --rule: rgba(228,220,205,0.12);
   --rose: #C97A62;
   --rose-soft: #4A2A20;
   --rose-deep: #E8A898;
