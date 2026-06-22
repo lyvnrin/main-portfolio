@@ -4,7 +4,7 @@ import { useRevealElements } from '../hooks/useReveal.js';
 
 const styles = `
   .skills-section {
-    padding: 7rem 0;
+    padding: 4.5rem 0 7rem;
     border-top: 1px solid var(--rule);
   }
 

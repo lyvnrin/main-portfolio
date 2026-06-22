@@ -4,7 +4,7 @@ import { useRevealElements } from '../hooks/useReveal.js';
 
 const styles = `
   .about-section {
-    padding: 7rem 0;
+    padding: 7rem 0 4.5rem;
     border-top: 1px solid var(--rule);
   }
 
@@ -85,6 +85,15 @@ const styles = `
     font-size: 0.95rem;
     line-height: 1.6;
     color: var(--muted);
+  }
+
+  .about-summary {
+    margin-top: 1.25rem;
+    font-family: var(--font-serif);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--muted);
+    max-width: 85%;
   }
 
   .about-right {
@@ -232,6 +241,11 @@ export default function About() {
                 <span className="about-area-term">Systems Thinking</span>
               </p>
             </div>
+
+            <p className="about-summary">
+              Full-stack leaning - drawn to wrangling messy datasets, building APIs,
+              and crafting the interfaces that sit on top.
+            </p>
           </div>
 
           <div className="about-right">
@@ -249,22 +263,11 @@ export default function About() {
             <div className="about-para reveal reveal-delay-2">
               <span className="about-para-label">¶ II.</span>
               <p className="about-para-text">
-                I'm drawn to the full stack - from wrangling messy datasets and building
-                APIs to crafting the interfaces that sit on top. Lately I've been deep
-                in data analytics, financial systems, and the quiet satisfaction of a
-                query that actually runs fast.
-              </p>
-            </div>
-
-            <div className="about-para reveal reveal-delay-3">
-              <span className="about-para-label">¶ III.</span>
-              <p className="about-para-text">
                 This summer, I'm interning at TCS as a Business Analyst (AI & ST),
                 working at the intersection of emerging tech and strategy. Still chasing
                 problems that are genuinely hard, ideally with good coffee nearby.
               </p>
             </div>
-
           </div>
         </div>
 
