@@ -24,13 +24,17 @@ const styles = `
 
   .about-photo {
     width: 100%;
-    flex: 1;
-    min-height: 280px;
-    background: var(--rule);
     border: 1px solid var(--rule);
     display: flex;
     align-items: center;
     justify-content: center;
+    min-height: 8rem;
+  }
+
+  .about-photo img {
+    width: 100%;
+    height: auto;
+    display: block;
   }
 
   .about-photo-label {
@@ -220,7 +224,7 @@ export default function About() {
         <div className="about-grid">
           <div className="about-left reveal">
             <div className="about-photo">
-              <span className="about-photo-label">image</span>
+              <img src="/about-photo.jpg" alt="Lavanya reading Batman: Hush in a comic book store" />
             </div>
             <p className="about-margin-note">
               - taken somewhere between a deploy and a deadline.

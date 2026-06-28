@@ -87,11 +87,17 @@ const styles = `
 
   .preview-image {
     width: 100%;
-    aspect-ratio: 16 / 10;
     background: var(--rule);
     display: flex;
     align-items: center;
     justify-content: center;
+    min-height: 8rem;
+  }
+
+  .preview-image img {
+    width: 100%;
+    height: auto;
+    display: block;
   }
 
   .preview-image-label {
@@ -157,7 +163,8 @@ const projects = [
     title: 'Oaxaca',
     descriptor: 'a full-stack restaurant management system, end to end',
     stack: 'React · FastAPI · SQLite',
-    image: '',
+    image: '/oaxaca-hero.png',
+    imagePosition: 'center top',
     annotation: 'five sprints, one very tired team',
     pronunciation: '/ wə · ˈhɑː · kə /',
     definition: 'a restaurant management system with live order tracking, role-specific dashboards, and COGS analytics - built across a full five-sprint Scrum cycle.',
@@ -179,7 +186,10 @@ const projects = [
     title: 'Valora',
     descriptor: 'an AI-powered financial chatbot for economic insight',
     stack: 'React · Python',
-    image: '',
+    image: '/valora-hero.png',
+    imagePosition: 'center center',
+    imageFit: 'contain',
+    imageBg: '#ebebed',
     annotation: 'fintech, but make it readable',
     pronunciation: '/ və · ˈlɔː · rə /',
     definition: 'an AI-powered financial chatbot that delivers economic insights on demand, with dynamic charts of stock and revenue data filtered across industries.',
@@ -197,31 +207,10 @@ const projects = [
   },
   {
     number: '03',
-    title: 'Lav-oogle',
-    descriptor: 'a mini search engine built on PageRank',
-    stack: 'Python · NumPy',
-    image: '',
-    annotation: 'google, but smaller and more honest',
-    pronunciation: '/ læv · uː · ɡ(ə)l /',
-    definition: 'a miniature search engine implementing PageRank via graph-based link analysis and NumPy matrix operations, built from first principles.',
-    etymology: 'portmanteau of Lavanya + Google; filed under "things I built because algorithms coursework went too well."',
-    status: 'Complete',
-    role: 'Sole Engineer',
-    stack_full: 'Python · NumPy',
-    filed: 'Spring 2026',
-    sections: [
-      { heading: 'PREMISE', content: 'PageRank sounds simple until you implement it. Lav-oogle turns that coursework curiosity into a full graph-based search engine.' },
-      { heading: 'APPROACH', content: 'Link structure becomes a NumPy adjacency matrix; the power method converges to PageRank scores, with queries run over a crawl-time inverted index.' },
-      { heading: 'LEARNINGS', content: 'The maths is elegant - the edge cases aren\'t. Dangling nodes and damping factor tuning needed care before rankings felt meaningful.' },
-    ],
-    links: [{ label: '↗ GitHub', href: 'https://github.com/lyvnrin/mini-search-engine' }],
-  },
-  {
-    number: '04',
     title: 'Sort It Out.',
     descriptor: 'an interactive sorting algorithm visualiser',
     stack: 'React · JavaScript',
-    image: '',
+    image: '/sortitout-hero.png',
     annotation: 'revision, but make it watchable',
     pronunciation: '/ sɔːt · ɪt · aʊt /',
     definition: 'an animated visualiser for Bubble, Merge, Quicksort, and Insertion Sort, with speed control and a tabbed revision sheet for each algorithm.',
@@ -237,28 +226,6 @@ const projects = [
     links: [
       { label: '↗ Live', href: 'https://sorting-visualiser-lk.vercel.app/' },
     ],
-  },
-  {
-    number: '05',
-    title: 'The House Always Wins?',
-    descriptor: 'a Monte Carlo simulation of casino profitability',
-    stack: 'Python · Pandas · Matplotlib · Jupyter',
-    image: '',
-    annotation: 'spoiler: it usually does',
-    pronunciation: '/ ðə · haʊs · ɔːlweɪz · wɪnz /',
-    definition: 'a Monte Carlo simulation exploring whether single-player tables and AI automation increase casino profitability across blackjack, baccarat, and poker.',
-    etymology: 'from the gambling idiom; filed under "data projects with a question worth asking."',
-    status: 'In Progress',
-    role: 'Sole Engineer',
-    stack_full: 'Python · Pandas · Matplotlib · Jupyter',
-    filed: 'Spring 2026',
-    sections: [
-      { heading: 'PREMISE', content: 'Casinos are probability engines. This project asks whether AI-automated tables shift the house edge or throughput in the casino\'s favour.' },
-      { heading: 'APPROACH', content: 'Monte Carlo simulation runs thousands of iterations across blackjack, baccarat, and poker; Pandas aggregates, Matplotlib visualises, Jupyter keeps it reproducible.' },
-      { heading: 'STATUS', content: 'In progress. Early results suggest the edge barely moves - but automated tables are faster, and speed compounds.' },
-    ],
-    pullquote: 'The house doesn\'t win by cheating. It wins by being slightly right, very often.',
-    links: [{ label: '↗ GitHub', href: 'https://github.com/lyvnrin/casino-sim' }],
   },
 ];
 
@@ -306,7 +273,10 @@ export default function Projects() {
             data-cursor="read →"
           >
             <div className="preview-image">
-              <span className="preview-image-label">image</span>
+              {active.image
+                ? <img src={active.image} alt={active.title} />
+                : <span className="preview-image-label">image</span>
+              }
             </div>
             <div className="preview-body">
               <h4 className="preview-title">{active.title}</h4>
