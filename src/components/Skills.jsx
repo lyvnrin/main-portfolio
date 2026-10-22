@@ -50,12 +50,12 @@ const styles = `
   .skill-pills {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.6rem;
+    gap: 0.4rem;
   }
 
   .skill-pill {
     display: inline-block;
-    padding: 0.5rem 1.1rem;
+    padding: 0.25rem 0.65rem;
     border: 1px solid var(--rule);
     font-family: var(--font-serif);
     font-size: 0.92rem;
@@ -90,12 +90,12 @@ const styles = `
 `;
 
 const categories = [
-  { label: 'AI', dot: 'slate', skills: ['Claude Code', 'GitHub Copilot'] },
-  { label: 'DATA', dot: 'rose', skills: ['NumPy', 'PostgreSQL', 'MS Excel'] },
-  { label: 'DEPLOYMENT', dot: 'slate', skills: ['FastAPI', 'Flask', 'Vercel'] },
-  { label: 'DESIGN', dot: 'rose', skills: ['Figma', 'Lovable', 'HTML/CSS'] },
-  { label: 'SCRIPTING', dot: 'slate', skills: ['Python', 'JavaScript', 'Java'] },
-  { label: 'TOOLS', dot: 'rose', skills: ['Git', 'Linux/WSL', 'React'] },
+  { label: 'BACKEND & AI', dot: 'rose', skills: ['FastAPI', 'Flask', 'Anthropic API'] },
+  { label: 'DATA', dot: 'slate', skills: ['NumPy', 'Scikit-learn', 'Matplotlib', 'PostgreSQL', 'SQLite'] },
+  { label: 'DESIGN', dot: 'rose', skills: ['Figma', 'Lovable'] },
+  { label: 'LANGUAGES', dot: 'slate', skills: ['Python', 'Java', 'JavaScript', 'SQL'] },
+  { label: 'TOOLS', dot: 'rose', skills: ['Git', 'MS Office'] },
+  { label: 'WEB', dot: 'slate', skills: ['React', 'Node.js', 'Express', 'HTML', 'CSS'] },
 ];
 
 export default function Skills() {
