@@ -3,8 +3,16 @@ import SectionHeader from './SectionHeader.jsx';
 import { useRevealElements } from '../hooks/useReveal.js';
 
 const styles = `
+  /* the folder sits on its own cool surface so it lifts off the cream page */
   .projects-section {
     padding: 4rem 0;
+    --folder-surface: #FFFFFF;
+    --folder-edge: rgba(43,50,86,0.28);
+  }
+
+  [data-theme="dark"] .projects-section {
+    --folder-surface: #222738;
+    --folder-edge: rgba(179,185,245,0.22);
   }
 
   /* ── Folder tabs ── */
@@ -40,9 +48,9 @@ const styles = `
      so it joins the folder while every other tab keeps its full outline */
   .folder-tab.active {
     padding-top: 0.65rem;
-    background: var(--bg);
-    border-color: var(--rule);
-    border-bottom-color: var(--bg);
+    background: var(--folder-surface);
+    border-color: var(--folder-edge);
+    border-bottom-color: var(--folder-surface);
   }
 
   .folder-tab-num {
@@ -71,15 +79,15 @@ const styles = `
   /* ── Folder body, with two offset sheets behind it ── */
   .folder-body {
     position: relative;
-    border: 1px solid var(--rule);
-    background: var(--bg);
+    border: 1px solid var(--folder-edge);
+    background: var(--folder-surface);
     box-shadow:
-      6px 6px 0 -1px var(--bg),
-      6px 6px 0 0 var(--rule),
-      12px 12px 0 -1px var(--bg),
-      12px 12px 0 0 var(--rule),
-      0 24px 48px -16px rgba(31,26,21,0.22),
-      0 6px 16px -4px rgba(31,26,21,0.08);
+      6px 6px 0 -1px #DCE0EA,
+      6px 6px 0 0 var(--folder-edge),
+      12px 12px 0 -1px #BEC4D6,
+      12px 12px 0 0 var(--folder-edge),
+      0 24px 48px -16px rgba(20,24,50,0.25),
+      0 6px 16px -4px rgba(20,24,50,0.1);
     margin-right: 12px;
     margin-bottom: 12px;
   }
@@ -204,15 +212,15 @@ const styles = `
   }
 
   [data-theme="dark"] .folder-tab.active {
-    background: var(--bg);
+    background: var(--folder-surface);
   }
 
   [data-theme="dark"] .folder-body {
     box-shadow:
-      6px 6px 0 -1px var(--bg),
-      6px 6px 0 0 var(--rule),
-      12px 12px 0 -1px var(--bg),
-      12px 12px 0 0 var(--rule),
+      6px 6px 0 -1px #2A3045,
+      6px 6px 0 0 var(--folder-edge),
+      12px 12px 0 -1px #343B56,
+      12px 12px 0 0 var(--folder-edge),
       0 24px 48px -16px rgba(0,0,0,0.55),
       0 6px 16px -4px rgba(0,0,0,0.3);
   }
