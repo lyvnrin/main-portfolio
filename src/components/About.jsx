@@ -78,15 +78,16 @@ const styles = `
     padding-top: 2rem;
     border-top: 1px solid var(--rule);
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
   }
 
   .meta-item dt {
     font-family: var(--font-sc);
-    font-size: 0.58rem;
-    letter-spacing: 0.16em;
-    color: var(--muted);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    color: var(--rose);
     margin-bottom: 0.65rem;
   }
 
@@ -201,16 +202,6 @@ export default function About() {
               <div className="meta-entry">
                 <span>FinTech Work Experience</span>
                 <span className="meta-sub">HSBC · 2022</span>
-              </div>
-            </dd>
-          </div>
-
-          <div className="meta-item">
-            <dt>Currently</dt>
-            <dd>
-              <div className="meta-entry">
-                <span>Final year</span>
-                <span className="meta-sub">London, England</span>
               </div>
             </dd>
           </div>
