@@ -226,38 +226,24 @@ const styles = `
     color: var(--rose);
   }
 
-  .mobile-theme-label {
+  /* the whole row is the toggle, a text link like the sidebar's */
+  .mobile-theme-toggle {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 0.9rem 1.25rem;
     font-family: var(--font-sc);
     font-size: 0.62rem;
     letter-spacing: 0.14em;
     color: var(--ink);
     opacity: 0.7;
-  }
-
-  .mobile-theme-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.9rem 1.25rem;
-  }
-
-  .mobile-theme-toggle {
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    border: 1px solid var(--rule);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.78rem;
-    color: var(--muted);
     background: transparent;
-    transition: border-color 0.3s ease, color 0.3s ease;
+    transition: color 0.3s ease, opacity 0.3s ease;
   }
 
   .mobile-theme-toggle:hover {
-    border-color: var(--rose);
     color: var(--rose);
+    opacity: 1;
   }
 
   [data-theme='dark'] .mobile-dropdown {
@@ -397,18 +383,9 @@ export default function Navbar() {
           {navItems.map((item) => (
             <div key={item.label}>{entry(item, 'mobile-dropdown-item')}</div>
           ))}
-          <div className="mobile-theme-row">
-            <span className="mobile-theme-label">
-              {theme === 'light' ? 'dark mode' : 'light mode'}
-            </span>
-            <button
-              className="mobile-theme-toggle"
-              onClick={toggle}
-              aria-label="Toggle theme"
-            >
-              {theme === 'light' ? '☽' : '☀'}
-            </button>
-          </div>
+          <button className="mobile-theme-toggle" onClick={toggle}>
+            {theme === 'light' ? 'dark mode' : 'light mode'}
+          </button>
         </nav>
       </div>
     </>

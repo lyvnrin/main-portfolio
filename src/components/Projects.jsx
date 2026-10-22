@@ -16,14 +16,22 @@ const styles = `
   }
 
   /* ── Folder tabs ── */
+  /* one row that scrolls sideways when the tabs don't fit, instead of wrapping */
   .folder-tabs {
     display: flex;
-    flex-wrap: wrap;
     align-items: flex-end;
     gap: 0.35rem;
     position: relative;
     z-index: 1;
     margin-bottom: -1px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .folder-tabs::-webkit-scrollbar {
+    display: none;
   }
 
   .folder-tab {
@@ -36,6 +44,7 @@ const styles = `
     border-color: #2B3256;
     background: #2B3256;
     white-space: nowrap;
+    flex-shrink: 0;
     transition: background 0.3s ease, padding 0.3s var(--ease-out-expo);
   }
 
@@ -338,6 +347,7 @@ const projects = [
 export default function Projects() {
   const [activeIndex, setActiveIndex] = useState(0);
   const tabRefs = useRef([]);
+  const tabsRef = useRef(null);
   useRevealElements();
 
   useEffect(() => {
@@ -346,6 +356,18 @@ export default function Projects() {
     document.head.appendChild(el);
     return () => el.remove();
   }, []);
+
+  // keep the open tab in view when the row is scrolled
+  useEffect(() => {
+    const row = tabsRef.current;
+    const tab = tabRefs.current[activeIndex];
+    if (!row || !tab) return;
+    const left = tab.offsetLeft;
+    const right = left + tab.offsetWidth;
+    if (left < row.scrollLeft || right > row.scrollLeft + row.clientWidth) {
+      row.scrollTo({ left: left - 8, behavior: 'smooth' });
+    }
+  }, [activeIndex]);
 
   // arrow keys move between tabs, like flicking through folders
   const onTabKey = (e) => {
@@ -364,7 +386,7 @@ export default function Projects() {
       <div className="section-wrap">
         <SectionHeader number="III" title="Projects" />
         <div className="reveal">
-          <div className="folder-tabs" role="tablist" aria-label="Projects">
+          <div ref={tabsRef} className="folder-tabs" role="tablist" aria-label="Projects">
             {projects.map((p, i) => (
               <button
                 key={p.number}

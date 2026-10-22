@@ -76,10 +76,18 @@ const styles = `
     transform: translate(2px, -2px);
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 900px) {
     .directory-grid {
       grid-template-columns: 1fr;
     }
+  }
+
+  [data-theme="dark"] .directory-entry {
+    border-bottom-color: rgba(226,229,238,0.14);
+  }
+
+  [data-theme="dark"] .directory-leader {
+    border-bottom-color: rgba(226,229,238,0.4);
   }
 `;
 
