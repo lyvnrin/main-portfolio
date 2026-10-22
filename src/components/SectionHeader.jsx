@@ -8,7 +8,7 @@ const styles = `
 
   .section-header-label {
     font-family: var(--font-sc);
-    font-size: 1.1rem;
+    font-size: 1.4rem;
     letter-spacing: 0.14em;
     color: var(--ink);
     font-weight: bolder;
