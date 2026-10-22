@@ -192,6 +192,10 @@ const styles = `
     padding-top: 0.3rem;
   }
 
+  .folder-prose + .folder-prose {
+    margin-top: 0.7rem;
+  }
+
   .folder-prose {
     font-family: var(--font-serif);
     font-size: 0.95rem;
@@ -233,6 +237,30 @@ const styles = `
 const projects = [
   {
     number: '01',
+    title: 'HTML as a Format',
+    image: '/html-as-format-hero.jpg',
+    definition: 'an internal tool that converts static PowerPoints, PDFs and meeting transcripts into interactive, self-contained HTML pages for consultants - replacing one-off, hand-formatted decks with generated content that\'s quicker to skim, share and revisit.',
+    status: 'Complete',
+    role: 'Sole Engineer',
+    stack: 'React · Express · Anthropic API',
+    filed: 'Summer 2026',
+    sections: [
+      { heading: 'PREMISE', content: 'Consultants lose hours hand-formatting decks that get skimmed once and forgotten. HTML as a Format turns the same source material into a single interactive page - drop a file, pick a layout, and it downloads with no build step and nothing to host.' },
+      { heading: 'PIPELINE', content: [
+        'Every input is normalised into slide-shaped JSON ({ slide, heading, body[], images[] }). .pptx files are unzipped with JSZip and read by a regex-based XML parser guarded against zip bombs.',
+        'PDFs go through pdf-parse, then a single Claude Sonnet call structures the raw text into the same shape.',
+        'Each extracted image is captioned by Claude Haiku 4.5, and those captions ride along as context even for renderers that never embed the image.',
+      ] },
+      { heading: 'ARCHITECTURE', content: [
+        'A React 19 + Vite frontend talks to an Express backend.',
+        'Timeline and Bubble Map each make one Sonnet tool call - key moments, or 3-8 clustered themes - and stamp the resulting JSON into an HTML template; Gallery skips the LLM entirely, grouping content into stat, step and prose blocks with regex and word-count heuristics.',
+        'Renderers are discovered at startup: any skills folder prefixed render - that holds a SKILL.md and an HTML template is exposed through GET /api/formats, so a new format ships without touching backend code. Output is one self-contained HTML file with no runtime dependencies.',
+      ] },
+    ],
+    links: [{ label: 'view github', href: 'https://github.com/lyvnrin/html-as-format' }],
+  },
+  {
+    number: '02',
     title: 'Oaxaca',
     image: '/oaxaca-hero.png',
     definition: 'a restaurant management system with live order tracking, role-specific dashboards, and COGS analytics - built across a full five-sprint Scrum cycle.',
@@ -244,11 +272,16 @@ const projects = [
       { heading: 'PREMISE', content: 'Restaurant ops involve many moving parts at once - orders, kitchen queues, staffing, cost tracking. Oaxaca handles them all in one system, with a dashboard per stakeholder.' },
       { heading: 'APPROACH', content: 'FastAPI and SQLite power the backend; three React frontends - kitchen, waiter, manager - share one REST API, with polling for live order tracking.' },
       { heading: 'PROCESS', content: 'Built across five full Scrum sprints. The real lesson was in the handoffs - keeping the API contract stable while three views evolved independently.' },
+      { heading: 'ARCHITECTURE', content: [
+        'FastAPI split into six routers - orders, menu, staff, stock, customers, alerts - over raw sqlite3 with WAL journaling and foreign keys enforced, and Pydantic models validating every payload.',
+        'Orders move through a REST lifecycle: POST /orders, PATCH /orders/{id} for status, POST /orders/{id}/pay, with line items added and removed independently, and kitchen updates depleting stock through /stock/deplete. The kitchen dashboard polls /orders every three seconds for near-real-time tickets.',
+        'CSV seed scripts rebuild the database from scratch, and a GitLab CI pipeline runs the backend unittest suite and a production frontend build on every push.',
+      ] },
     ],
     links: [{ label: 'view github', href: 'https://github.com/lyvnrin/oaxaca' }],
   },
   {
-    number: '02',
+    number: '03',
     title: 'Transcript to Medium',
     image: '/transcript-to-medium-hero.jpg',
     definition: 'a multi-stage Claude pipeline that transforms raw transcripts from TCS PacePort\'s biweekly Applied AI knowledge-sharing sessions into polished, publish-ready Medium articles.',
@@ -259,6 +292,12 @@ const projects = [
     sections: [
       { heading: 'PREMISE', content: 'Every fortnight, PacePort hosts an Applied AI session full of ideas worth sharing - but a raw transcript is not an article. This closes the gap between what was said and something people want to read.' },
       { heading: 'APPROACH', content: 'Transcripts (.pdf, .docx or .md) pass through structuring, fact-checking and formatting stages in Claude, streamed to the UI as progress updates. Each section gets a Pexels header photo, and referenced URLs become Open Graph link preview cards.' },
+      { heading: 'ARCHITECTURE', content: [
+        'A single Express handler, /api/process, runs the whole pipeline and streams each stage to the React client as Server-Sent Events: extracting, structuring, fact-checking, previewing, formatting, done.',
+        'Uploads arrive as multipart via multer; mammoth and pdf-parse extract text, merged into one source under labelled transcript and supplementary headers.',
+        'Three Claude calls follow - structuring into editorial JSON, a fact-check pass that corrects misattributed authorship and fails open to the unchecked draft, and formatting into semantic HTML.',
+        'The formatter leaves <!--SECTION_IMAGE:N--> and <!--LINK_CARD:N--> placeholders keyed to each section\'s original index, so Pexels photos and Open Graph cards still splice into the right place after Claude reorders sections. Editions persist through better-sqlite3.',
+      ] },
       { heading: 'PROCESS', content: 'Output is designed for human review, not blind publishing - editors tune length, tone and audience, then refine the draft. Edition history in SQLite means past articles can be reopened and revised.' },
     ],
     links: [
@@ -267,7 +306,7 @@ const projects = [
     ],
   },
   {
-    number: '03',
+    number: '04',
     title: 'Valora',
     image: '/valora-hero.png',
     definition: 'an AI-powered financial chatbot that delivers economic insights on demand, with dynamic charts of stock and revenue data filtered across industries.',
@@ -278,6 +317,10 @@ const projects = [
     sections: [
       { heading: 'PREMISE', content: 'Financial data is everywhere and legible to almost no one. Valora closes that gap with a chatbot that answers economic questions in plain language.' },
       { heading: 'APPROACH', content: 'I built the React frontend - chat interface, filterable charts, and a layout designed to make dense data feel approachable.' },
+      { heading: 'ARCHITECTURE', content: [
+        'React 19 + Vite with React Router across three views - landing, chatbot and company profiles - styled in Tailwind v4, with chatbot replies rendered from markdown through marked.',
+        'Behind it, a FastAPI service resolves tickers from free-text questions, infers the prompt type, and grounds Gemini 2.5 Flash responses in company data from yFinance and TAAPI technical indicators, alongside ratio analysis, anomaly detection and hypothesis-testing modules. The full stack ships as a Docker image on Google Cloud Run.',
+      ] },
       { heading: 'LEARNINGS', content: 'Presenting financial data well is a design problem as much as an engineering one - every chart choice changes what a user believes.' },
     ],
     links: [{ label: 'view github', href: 'https://github.com/lyvnrin/Valora' }],
@@ -382,7 +425,11 @@ export default function Projects() {
                   <span className="folder-section-label">
                     § {String(i + 1).padStart(2, '0')} · {section.heading}
                   </span>
-                  <p className="folder-prose">{section.content}</p>
+                  <div>
+                    {[].concat(section.content).map((para) => (
+                      <p key={para} className="folder-prose">{para}</p>
+                    ))}
+                  </div>
                 </div>
               ))}
             </article>
