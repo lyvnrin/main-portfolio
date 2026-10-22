@@ -25,8 +25,8 @@ const styles = `
 
   .hero-entry-label {
     font-family: var(--font-sc);
-    font-size: 0.8rem;
-    font-weight: 600;
+    font-size: 0.95rem;
+    font-weight: 700;
     letter-spacing: 0.18em;
     color: var(--muted);
     margin-bottom: 0.75rem;
