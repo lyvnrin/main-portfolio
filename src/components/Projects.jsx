@@ -235,32 +235,32 @@ const styles = `
     background: var(--folder-surface);
   }
 
-  /* read more / read less only exists on narrow screens */
-  .folder-toggle {
+  /* case sections stay folded until "read more" is pressed */
+  .folder-sections:not(.expanded) {
     display: none;
+  }
+  .folder-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    width: 100%;
+    padding: 0.9rem 1.75rem;
+    border-top: 1px solid var(--folder-edge);
+    font-family: var(--font-sc);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    color: var(--rose);
+    text-align: left;
+    transition: background 0.3s ease;
+  }
+  .folder-toggle:hover {
+    background: rgba(2,12,114,0.04);
   }
 
   @media (max-width: 900px) {
-    .folder-sections:not(.expanded) {
-      display: none;
-    }
     .folder-toggle {
-      display: flex;
-      align-items: center;
-      gap: 0.5em;
-      width: 100%;
       padding: 0.9rem 1.25rem;
-      border-top: 1px solid var(--folder-edge);
-      font-family: var(--font-sc);
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      color: var(--rose);
-      text-align: left;
-      transition: background 0.3s ease;
-    }
-    .folder-toggle:hover {
-      background: rgba(2,12,114,0.04);
     }
     .folder-top {
       grid-template-columns: 1fr;
@@ -418,7 +418,7 @@ export default function Projects() {
     if (left < row.scrollLeft || right > row.scrollLeft + row.clientWidth) {
       row.scrollTo({ left, behavior: 'smooth' });
     }
-    // each project opens collapsed on narrow screens
+    // each project opens collapsed
     setExpanded(false);
   }, [activeIndex]);
 
