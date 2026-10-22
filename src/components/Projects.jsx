@@ -25,9 +25,15 @@ const styles = `
     padding: 0.45rem 1.1rem;
     border: 1px solid var(--rule);
     border-radius: 6px 6px 0 0;
-    background: rgba(31,26,21,0.035);
+    border-color: #2B3256;
+    background: #2B3256;
     white-space: nowrap;
     transition: background 0.3s ease, padding 0.3s var(--ease-out-expo);
+  }
+
+  .folder-tab:hover {
+    background: #3A4270;
+    border-color: #3A4270;
   }
 
   /* the open tab is taller and its bottom edge takes the page colour,
@@ -35,6 +41,7 @@ const styles = `
   .folder-tab.active {
     padding-top: 0.65rem;
     background: var(--bg);
+    border-color: var(--rule);
     border-bottom-color: var(--bg);
   }
 
@@ -42,18 +49,17 @@ const styles = `
     font-family: var(--font-sc);
     font-size: 0.62rem;
     letter-spacing: 0.14em;
-    color: var(--muted);
+    color: rgba(226,226,226,0.6);
   }
 
   .folder-tab-title {
     font-family: var(--font-serif);
     font-weight: 600;
     font-size: 0.9rem;
-    color: var(--muted);
+    color: #E2E2E2;
     transition: color 0.3s ease;
   }
 
-  .folder-tab:hover .folder-tab-title,
   .folder-tab.active .folder-tab-title {
     color: var(--ink);
   }
@@ -71,7 +77,9 @@ const styles = `
       6px 6px 0 -1px var(--bg),
       6px 6px 0 0 var(--rule),
       12px 12px 0 -1px var(--bg),
-      12px 12px 0 0 var(--rule);
+      12px 12px 0 0 var(--rule),
+      0 24px 48px -16px rgba(31,26,21,0.22),
+      0 6px 16px -4px rgba(31,26,21,0.08);
     margin-right: 12px;
     margin-bottom: 12px;
   }
@@ -191,12 +199,18 @@ const styles = `
     color: var(--ink);
   }
 
-  [data-theme="dark"] .folder-tab {
-    background: rgba(240,235,227,0.04);
-  }
-
   [data-theme="dark"] .folder-tab.active {
     background: var(--bg);
+  }
+
+  [data-theme="dark"] .folder-body {
+    box-shadow:
+      6px 6px 0 -1px var(--bg),
+      6px 6px 0 0 var(--rule),
+      12px 12px 0 -1px var(--bg),
+      12px 12px 0 0 var(--rule),
+      0 24px 48px -16px rgba(0,0,0,0.55),
+      0 6px 16px -4px rgba(0,0,0,0.3);
   }
 
   @media (max-width: 900px) {
