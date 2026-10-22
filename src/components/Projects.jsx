@@ -9,11 +9,18 @@ const styles = `
     padding: 4rem 0;
     --folder-surface: #FFFFFF;
     --folder-edge: rgba(43,50,86,0.28);
+    --sheet-1: #DCE0EA;
+    --sheet-2: #BEC4D6;
+    --sheet-step: 6px;
+    --folder-shadow: rgba(20,24,50,0.25);
   }
 
   [data-theme="dark"] .projects-section {
     --folder-surface: #222738;
     --folder-edge: rgba(179,185,245,0.22);
+    --sheet-1: #2A3045;
+    --sheet-2: #343B56;
+    --folder-shadow: rgba(0,0,0,0.55);
   }
 
   /* ── Folder tabs ── */
@@ -25,7 +32,9 @@ const styles = `
     position: relative;
     z-index: 1;
     margin-bottom: -1px;
+    margin-right: calc(var(--sheet-step) * 2);
     overflow-x: auto;
+    scroll-snap-type: x proximity;
     overflow-y: hidden;
     scrollbar-width: none;
     -webkit-overflow-scrolling: touch;
@@ -46,6 +55,7 @@ const styles = `
     background: #2B3256;
     white-space: nowrap;
     flex-shrink: 0;
+    scroll-snap-align: start;
     transition: background 0.3s ease, padding 0.3s var(--ease-out-expo);
   }
 
@@ -92,14 +102,14 @@ const styles = `
     border: 1px solid var(--folder-edge);
     background: var(--folder-surface);
     box-shadow:
-      6px 6px 0 -1px #DCE0EA,
-      6px 6px 0 0 var(--folder-edge),
-      12px 12px 0 -1px #BEC4D6,
-      12px 12px 0 0 var(--folder-edge),
-      0 24px 48px -16px rgba(20,24,50,0.25),
-      0 6px 16px -4px rgba(20,24,50,0.1);
-    margin-right: 12px;
-    margin-bottom: 12px;
+      var(--sheet-step) var(--sheet-step) 0 -1px var(--sheet-1),
+      var(--sheet-step) var(--sheet-step) 0 0 var(--folder-edge),
+      calc(var(--sheet-step) * 2) calc(var(--sheet-step) * 2) 0 -1px var(--sheet-2),
+      calc(var(--sheet-step) * 2) calc(var(--sheet-step) * 2) 0 0 var(--folder-edge),
+      0 24px 48px -16px var(--folder-shadow),
+      0 6px 16px -4px var(--folder-shadow);
+    margin-right: calc(var(--sheet-step) * 2);
+    margin-bottom: calc(var(--sheet-step) * 2);
   }
 
   .folder-content {
@@ -225,16 +235,6 @@ const styles = `
     background: var(--folder-surface);
   }
 
-  [data-theme="dark"] .folder-body {
-    box-shadow:
-      6px 6px 0 -1px #2A3045,
-      6px 6px 0 0 var(--folder-edge),
-      12px 12px 0 -1px #343B56,
-      12px 12px 0 0 var(--folder-edge),
-      0 24px 48px -16px rgba(0,0,0,0.55),
-      0 6px 16px -4px rgba(0,0,0,0.3);
-  }
-
   /* read more / read less only exists on narrow screens */
   .folder-toggle {
     display: none;
@@ -274,6 +274,33 @@ const styles = `
       grid-template-columns: 1fr;
       gap: 0.5rem;
       padding: 1rem 1.25rem;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .projects-section {
+      --sheet-step: 4px;
+    }
+    .folder-tabs {
+      gap: 0.25rem;
+      -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 2rem), transparent);
+      mask-image: linear-gradient(to right, #000 calc(100% - 2rem), transparent);
+    }
+    .folder-tabs.at-end {
+      -webkit-mask-image: none;
+      mask-image: none;
+    }
+    .folder-tab {
+      padding: 0.4rem 0.8rem;
+    }
+    .folder-tab.active {
+      padding-top: 0.55rem;
+    }
+    .folder-tab-num {
+      display: none;
+    }
+    .folder-tab-title {
+      font-size: 0.8rem;
     }
   }
 `;
@@ -376,6 +403,7 @@ const projects = [
 export default function Projects() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [expanded, setExpanded] = useState(false);
+  const [tabsAtEnd, setTabsAtEnd] = useState(false);
   const tabRefs = useRef([]);
   const tabsRef = useRef(null);
   useRevealElements();
@@ -388,11 +416,23 @@ export default function Projects() {
     const left = tab.offsetLeft;
     const right = left + tab.offsetWidth;
     if (left < row.scrollLeft || right > row.scrollLeft + row.clientWidth) {
-      row.scrollTo({ left: left - 8, behavior: 'smooth' });
+      row.scrollTo({ left, behavior: 'smooth' });
     }
     // each project opens collapsed on narrow screens
     setExpanded(false);
   }, [activeIndex]);
+
+  // drop the right-edge fade once there are no more tabs to scroll to
+  const updateTabsEnd = () => {
+    const row = tabsRef.current;
+    if (row) setTabsAtEnd(row.scrollLeft + row.clientWidth >= row.scrollWidth - 2);
+  };
+
+  useEffect(() => {
+    updateTabsEnd();
+    window.addEventListener('resize', updateTabsEnd);
+    return () => window.removeEventListener('resize', updateTabsEnd);
+  }, []);
 
   const collapse = () => {
     setExpanded(false);
@@ -417,7 +457,13 @@ export default function Projects() {
       <div className="section-wrap">
         <SectionHeader number="III" title="Projects" />
         <div className="reveal">
-          <div ref={tabsRef} className="folder-tabs" role="tablist" aria-label="Projects">
+          <div
+            ref={tabsRef}
+            className={`folder-tabs${tabsAtEnd ? ' at-end' : ''}`}
+            role="tablist"
+            aria-label="Projects"
+            onScroll={updateTabsEnd}
+          >
             {projects.map((p, i) => (
               <button
                 key={p.number}
