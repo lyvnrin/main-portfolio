@@ -142,8 +142,8 @@ const styles = `
   .mobile-menu-wrap {
     display: none;
     position: fixed;
-    top: 1.25rem;
-    left: 1.25rem;
+    top: 1rem;
+    left: 0.75rem;
     z-index: 8000;
     opacity: 0;
     transform: translateX(-1rem);
@@ -158,20 +158,33 @@ const styles = `
   }
 
   .mobile-menu-btn {
-    display: flex;
-    width: 32px;
-    height: 32px;
+    position: relative;
+    display: block;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
     border: 1px solid var(--rule);
-    align-items: center;
-    justify-content: center;
-    font-size: 1.1rem;
-    font-weight: 300;
     color: var(--muted);
     background: var(--bg);
     transition: border-color 0.3s ease, color 0.3s ease, transform 0.4s var(--ease-out-expo);
-    line-height: 1;
     flex-shrink: 0;
+  }
+
+  /* the plus is drawn with two bars so it sits dead centre, unlike a font glyph */
+  .mobile-menu-btn::before,
+  .mobile-menu-btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 12px;
+    height: 1.5px;
+    background: currentColor;
+    transform: translate(-50%, -50%);
+  }
+
+  .mobile-menu-btn::after {
+    transform: translate(-50%, -50%) rotate(90deg);
   }
 
   .mobile-menu-btn:hover {
@@ -187,7 +200,7 @@ const styles = `
 
   .mobile-dropdown {
     position: absolute;
-    top: 44px;
+    top: 48px;
     left: 0;
     background: rgba(245,246,249,0.96);
     backdrop-filter: blur(16px) saturate(150%);
@@ -255,6 +268,32 @@ const styles = `
   @media (max-width: 1499px) {
     .toc { display: none; }
     .mobile-menu-wrap { display: block; }
+  }
+
+  /* phones have no side margin to spare, so the button floats bottom-right
+     and the menu opens upward from it */
+  @media (max-width: 768px) {
+    .mobile-menu-wrap {
+      top: auto;
+      left: auto;
+      bottom: 1.25rem;
+      right: 1.25rem;
+      transform: translateY(1rem);
+    }
+    .mobile-menu-wrap.visible {
+      transform: translateY(0);
+    }
+    .mobile-menu-btn {
+      box-shadow: 0 6px 18px -4px rgba(22,26,43,0.25);
+    }
+    .mobile-dropdown {
+      top: auto;
+      left: auto;
+      bottom: 48px;
+      right: 0;
+      transform: translateY(8px) scale(0.97);
+      transform-origin: bottom right;
+    }
   }
 `;
 
@@ -368,9 +407,8 @@ export default function Navbar() {
           className={`mobile-menu-btn${menuOpen ? ' open' : ''}`}
           onClick={() => setMenuOpen(o => !o)}
           aria-label="Toggle contents"
-        >
-          +
-        </button>
+          aria-expanded={menuOpen}
+        />
 
         <nav className={`mobile-dropdown${menuOpen ? ' open' : ''}`} aria-label="Contents">
           <p className="toc-heading">contents</p>
