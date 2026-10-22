@@ -3,22 +3,23 @@ import { useRevealElements } from '../hooks/useReveal.js';
 
 const styles = `
   .substack-banner {
-    border-top: 1px solid var(--rule);
-    border-bottom: 1px solid var(--rule);
-    padding: 1.1rem 0;
-    background: #F0EAE1;
+    padding: 1rem 0;
   }
 
   .substack-inner {
     display: flex;
     align-items: baseline;
+    justify-content: center;
     gap: 1rem;
     flex-wrap: wrap;
+    border: 1px solid var(--rule);
+    padding: 1.1rem 1.75rem;
+    background: #F0EAE1;
   }
 
   .substack-ref-label {
     font-family: var(--font-sc);
-    font-size: 0.62rem;
+    font-size: 0.75rem;
     letter-spacing: 0.15em;
     color: var(--ink);
     white-space: nowrap;
@@ -36,22 +37,16 @@ const styles = `
   .substack-text {
     font-family: var(--font-serif);
     font-style: italic;
-    font-size: 0.95rem;
+    font-size: 1.1rem;
     color: var(--ink);
     line-height: 1.5;
     white-space: nowrap;
   }
 
-  .substack-text em {
-    font-style: normal;
-    color: var(--rose);
-  }
-
   .substack-link {
     position: relative;
     font-family: var(--font-serif);
-    font-style: italic;
-    font-size: 0.95rem;
+    font-size: 1.1rem;
     color: var(--rose-deep);
     text-decoration: none;
     display: inline-flex;
@@ -85,7 +80,7 @@ const styles = `
     transform: translateX(4px);
   }
 
-  [data-theme="dark"] .substack-banner {
+  [data-theme="dark"] .substack-inner {
     background: #1E1812;
   }
 
@@ -117,17 +112,15 @@ export default function SubstackBanner() {
         <div className="substack-inner reveal">
           <span className="substack-ref-label">see also</span>
           <span className="substack-rule-short" />
-          <p className="substack-text">
-            Essays on tech &amp; culture at <em>The SWE Scriptures</em> - currently reading:
-          </p>
+          <p className="substack-text">essays on tech &amp; culture at</p>
           <a
-            href="https://theswescriptures.substack.com/p/the-allegory-of-frankenstein-in-ethical"
+            href="https://theswescriptures.substack.com"
             target="_blank"
             rel="noopener noreferrer"
             className="substack-link"
             data-cursor="read →"
           >
-            "the allegory of frankenstein in ethical ai"
+            The SWE Scriptures
             <span className="substack-link-arrow">→</span>
           </a>
         </div>
