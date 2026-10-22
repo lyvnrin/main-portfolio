@@ -40,9 +40,10 @@ const styles = `
 
   .toc-heading {
     font-family: var(--font-sc);
-    font-size: 0.62rem;
+    font-size: 0.72rem;
+    font-weight: 700;
     letter-spacing: 0.24em;
-    color: var(--muted);
+    color: var(--ink);
     padding-bottom: 0.5rem;
     border-bottom: 1px solid var(--rule);
     margin-bottom: -0.6rem;
@@ -66,7 +67,6 @@ const styles = `
 
   .toc-num {
     font-family: var(--font-serif);
-    font-style: italic;
     font-size: 0.7rem;
     color: var(--muted);
     min-width: 1.1rem;
@@ -108,7 +108,6 @@ const styles = `
 
   .nav-item-pos {
     font-family: var(--font-serif);
-    font-style: italic;
     font-size: 0.7rem;
     color: var(--muted);
     transition: color 0.3s ease;
@@ -119,25 +118,23 @@ const styles = `
     color: var(--rose);
   }
 
+  /* sits right under the last entry, styled as a link rather than an icon button */
   .theme-toggle {
     align-self: flex-start;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    border: 1px solid var(--rule);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.85rem;
+    margin-top: -0.9rem;
+    font-family: var(--font-serif);
+    font-size: 0.75rem;
     color: var(--muted);
-    transition: border-color 0.3s ease, color 0.3s ease, transform 0.4s var(--ease-out-expo);
     background: transparent;
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-underline-offset: 0.2em;
+    transition: color 0.3s ease, text-decoration-color 0.3s ease;
   }
 
   .theme-toggle:hover {
-    border-color: var(--rose);
     color: var(--rose);
-    transform: rotate(20deg);
+    text-decoration-color: currentColor;
   }
 
   /* ── Compact contents menu (narrow screens) ── */
@@ -382,10 +379,9 @@ export default function Navbar() {
         <button
           className="theme-toggle"
           onClick={toggle}
-          aria-label={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
           data-cursor={theme === 'light' ? 'dark ◑' : 'light ◑'}
         >
-          {theme === 'light' ? '☽' : '☀'}
+          {theme === 'light' ? 'dark mode' : 'light mode'}
         </button>
       </nav>
 
