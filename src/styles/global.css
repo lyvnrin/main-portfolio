@@ -7,9 +7,9 @@
   --rose: #020C72;
   --rose-soft: #D4D7F2;
   --rose-deep: #010852;
-  --slate: #5A6B82;
-  --slate-soft: #C7D1DE;
-  --slate-deep: #36475C;
+  --slate: #8A8A8A;
+  --slate-soft: #E2E2E2;
+  --slate-deep: #4A4A4A;
 
   --font-display: 'Cormorant Garamond', Georgia, serif;
   --font-serif: 'Newsreader', Georgia, serif;
@@ -29,9 +29,9 @@
   --rose: #7D88EE;
   --rose-soft: #161C4D;
   --rose-deep: #B3B9F5;
-  --slate: #7A8FA8;
-  --slate-soft: #1E2A38;
-  --slate-deep: #A8BECC;
+  --slate: #A0A0A0;
+  --slate-soft: #2A2A2A;
+  --slate-deep: #E2E2E2;
 }
 
 [data-theme="dark"] body::before {
@@ -255,8 +255,8 @@ body::before {
 }
 
 [data-theme="dark"] .skill-pill.slate {
-  background: rgba(122,143,168,0.12);
-  border-color: rgba(122,143,168,0.3);
+  background: rgba(160,160,160,0.12);
+  border-color: rgba(160,160,160,0.3);
   color: var(--slate-deep);
 }
 

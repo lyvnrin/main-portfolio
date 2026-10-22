@@ -69,12 +69,13 @@ const styles = `
   }
 
   .hero-pronoun-badge {
-    border: 0.5px solid var(--rule);
+    background: var(--slate-soft);
+    border: 0.5px solid var(--slate);
     padding: 2px 10px;
     border-radius: 2rem;
     font-family: var(--font-sans);
     font-size: 0.68rem;
-    color: var(--muted);
+    color: var(--slate-deep);
     letter-spacing: 0.04em;
   }
 

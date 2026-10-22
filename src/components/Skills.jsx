@@ -71,7 +71,7 @@ const styles = `
   }
 
   .skill-pill.slate {
-    border-color: rgba(90,107,130,0.4);
+    border-color: rgba(138,138,138,0.4);
     color: var(--slate-deep);
   }
 
