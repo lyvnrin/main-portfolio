@@ -235,7 +235,33 @@ const styles = `
       0 6px 16px -4px rgba(0,0,0,0.3);
   }
 
+  /* read more / read less only exists on narrow screens */
+  .folder-toggle {
+    display: none;
+  }
+
   @media (max-width: 900px) {
+    .folder-sections:not(.expanded) {
+      display: none;
+    }
+    .folder-toggle {
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+      width: 100%;
+      padding: 0.9rem 1.25rem;
+      border-top: 1px solid var(--folder-edge);
+      font-family: var(--font-sc);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      color: var(--rose);
+      text-align: left;
+      transition: background 0.3s ease;
+    }
+    .folder-toggle:hover {
+      background: rgba(2,12,114,0.04);
+    }
     .folder-top {
       grid-template-columns: 1fr;
       gap: 1.5rem;
@@ -349,6 +375,7 @@ const projects = [
 
 export default function Projects() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [expanded, setExpanded] = useState(false);
   const tabRefs = useRef([]);
   const tabsRef = useRef(null);
   useRevealElements();
@@ -363,7 +390,15 @@ export default function Projects() {
     if (left < row.scrollLeft || right > row.scrollLeft + row.clientWidth) {
       row.scrollTo({ left: left - 8, behavior: 'smooth' });
     }
+    // each project opens collapsed on narrow screens
+    setExpanded(false);
   }, [activeIndex]);
+
+  const collapse = () => {
+    setExpanded(false);
+    // the page gets shorter, so bring the tabs and folder back into view
+    tabsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
 
   // arrow keys move between tabs, like flicking through folders
   const onTabKey = (e) => {
@@ -444,18 +479,42 @@ export default function Projects() {
                 </div>
               </div>
 
-              {project.sections.map((section, i) => (
-                <div key={section.heading} className="folder-section">
-                  <span className="folder-section-label">
-                    § {String(i + 1).padStart(2, '0')} · {section.heading}
-                  </span>
-                  <div>
-                    {[].concat(section.content).map((para) => (
-                      <p key={para} className="folder-prose">{para}</p>
-                    ))}
+              {!expanded && (
+                <button
+                  className="folder-toggle"
+                  onClick={() => setExpanded(true)}
+                  aria-expanded="false"
+                  aria-controls="folder-sections"
+                >
+                  read more <span aria-hidden="true">↓</span>
+                </button>
+              )}
+
+              <div id="folder-sections" className={`folder-sections${expanded ? ' expanded' : ''}`}>
+                {project.sections.map((section, i) => (
+                  <div key={section.heading} className="folder-section">
+                    <span className="folder-section-label">
+                      § {String(i + 1).padStart(2, '0')} · {section.heading}
+                    </span>
+                    <div>
+                      {[].concat(section.content).map((para) => (
+                        <p key={para} className="folder-prose">{para}</p>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
+
+              {expanded && (
+                <button
+                  className="folder-toggle"
+                  onClick={collapse}
+                  aria-expanded="true"
+                  aria-controls="folder-sections"
+                >
+                  read less <span aria-hidden="true">↑</span>
+                </button>
+              )}
             </article>
           </div>
         </div>
