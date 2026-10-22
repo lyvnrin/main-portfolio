@@ -15,12 +15,6 @@ const styles = `
     white-space: nowrap;
     flex-shrink: 0;
   }
-
-  .section-header-rule {
-    flex: 1;
-    height: 1px;
-    background: var(--rule);
-  }
 `;
 
 let injected = false;
@@ -38,7 +32,6 @@ export default function SectionHeader({ number, title }) {
   return (
     <div className="section-header reveal">
       <span className="section-header-label">§ {number} — {title}</span>
-      <div className="section-header-rule" />
     </div>
   );
 }

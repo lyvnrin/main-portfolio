@@ -4,7 +4,7 @@ import { useRevealElements } from '../hooks/useReveal.js';
 
 const styles = `
   .about-section {
-    padding: 5rem 0 4rem;
+    padding: 5rem 0 1.5rem;
   }
 
   .about-grid {

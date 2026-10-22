@@ -196,11 +196,12 @@ body::before {
   content: '';
   position: absolute;
   top: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
+  right: 0;
+  margin: 0 auto;
   width: calc(min(100%, 1200px) - 6rem);
-  height: 2px;
-  background: var(--rule);
+  /* a border is snapped to whole pixels, so every divider renders the same weight */
+  border-top: 2px solid var(--rule);
 }
 
 @media (max-width: 768px) {
