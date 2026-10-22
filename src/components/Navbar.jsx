@@ -274,7 +274,7 @@ const styles = `
 const navItems = [
   { num: 'i.',   label: 'about',   pos: 'n.', href: '#about' },
   { num: 'ii.',  label: 'skills',  pos: 'n.', href: '#skills' },
-  { num: 'iii.', label: 'work',    pos: 'n.', href: '#projects' },
+  { num: 'iii.', label: 'projects', pos: 'n.', href: '#projects' },
   { num: 'iv.',  label: 'contact', pos: 'n.', href: '#contact' },
 ];
 

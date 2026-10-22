@@ -362,7 +362,7 @@ export default function Projects() {
   return (
     <section id="projects" className="projects-section">
       <div className="section-wrap">
-        <SectionHeader number="III" title="Selected works" />
+        <SectionHeader number="III" title="Projects" />
         <div className="reveal">
           <div className="folder-tabs" role="tablist" aria-label="Projects">
             {projects.map((p, i) => (
