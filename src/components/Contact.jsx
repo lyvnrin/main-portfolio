@@ -5,7 +5,6 @@ import { useRevealElements } from '../hooks/useReveal.js';
 const styles = `
   .contact-section {
     padding: 4rem 0;
-    border-top: 1px solid var(--rule);
   }
 
   .contact-note {

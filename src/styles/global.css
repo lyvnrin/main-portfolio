@@ -181,6 +181,37 @@ body::before {
   }
 }
 
+/* Section dividers span the content column, not the full viewport */
+.about-section,
+.skills-section,
+.projects-section,
+.contact-section {
+  position: relative;
+}
+
+.about-section::before,
+.skills-section::before,
+.projects-section::before,
+.contact-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(min(100%, 1200px) - 6rem);
+  height: 2px;
+  background: var(--rule);
+}
+
+@media (max-width: 768px) {
+  .about-section::before,
+  .skills-section::before,
+  .projects-section::before,
+  .contact-section::before {
+    width: calc(100% - 3rem);
+  }
+}
+
 /* ─── Dark Mode Overrides ────────────────────────────── */
 
 /* Cursor */

@@ -1,6 +1,5 @@
 import Cursor from './components/Cursor.jsx';
 import Navbar from './components/Navbar.jsx';
-import ScrollProgress from './components/ScrollProgress.jsx';
 import Hero from './components/Hero.jsx';
 import About from './components/About.jsx';
 import SubstackBanner from './components/SubstackBanner.jsx';
@@ -13,7 +12,6 @@ export default function App() {
   return (
     <>
       <Cursor />
-      <ScrollProgress />
       <Navbar />
       <main>
         <Hero />

@@ -6,7 +6,6 @@ import { useRevealElements } from '../hooks/useReveal.js';
 const styles = `
   .projects-section {
     padding: 4rem 0;
-    border-top: 1px solid var(--rule);
   }
 
   .projects-ledger {

@@ -3,12 +3,12 @@ const styles = `
     display: flex;
     align-items: center;
     gap: 1.5rem;
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
   }
 
   .section-header-label {
     font-family: var(--font-sc);
-    font-size: 0.85rem;
+    font-size: 1.1rem;
     letter-spacing: 0.14em;
     color: var(--ink);
     font-weight: bolder;
