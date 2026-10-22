@@ -7,7 +7,7 @@ const styles = `
   }
 
   .hero {
-    min-height: calc(100vh - 36px);
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
