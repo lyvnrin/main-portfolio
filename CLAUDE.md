@@ -2,7 +2,7 @@
 React + Vite, deployed on Vercel
 
 ## Design system
-- Font: Cormorant Garamond
+- Fonts: Cormorant Garamond (display headings), Newsreader (body/UI), Cormorant SC (small-caps labels)
 - Accent: navy
 - Concept: dictionary/editorial layout with particle canvas
 

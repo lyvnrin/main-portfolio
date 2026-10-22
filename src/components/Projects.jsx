@@ -52,7 +52,7 @@ const styles = `
   }
 
   .ledger-title {
-    font-family: var(--font-serif);
+    font-family: var(--font-display);
     font-size: clamp(1.4rem, 2.6vw, 2rem);
     line-height: 1.15;
     color: var(--ink);
@@ -113,7 +113,7 @@ const styles = `
   }
 
   .preview-title {
-    font-family: var(--font-serif);
+    font-family: var(--font-display);
     font-size: clamp(1.6rem, 3vw, 2.2rem);
     color: var(--ink);
     margin-bottom: 0.6rem;

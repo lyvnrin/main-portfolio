@@ -41,7 +41,7 @@ const styles = `
   }
 
   .hero-name {
-    font-family: var(--font-serif);
+    font-family: var(--font-display);
     font-weight: 300;
     font-size: clamp(4.5rem, 10vw, 9rem);
     line-height: 0.9;
@@ -50,7 +50,7 @@ const styles = `
   }
 
   .hero-pos {
-    font-family: var(--font-serif);
+    font-family: var(--font-display);
     font-style: italic;
     font-weight: 300;
     font-size: clamp(1.5rem, 3.5vw, 3rem);

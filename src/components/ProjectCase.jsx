@@ -87,7 +87,7 @@ const styles = `
   }
 
   .case-title {
-    font-family: var(--font-serif);
+    font-family: var(--font-display);
     font-weight: 300;
     font-size: clamp(2.2rem, 5vw, 3.8rem);
     line-height: 1;
@@ -96,7 +96,7 @@ const styles = `
   }
 
   .case-title-pos {
-    font-family: var(--font-serif);
+    font-family: var(--font-display);
     font-style: italic;
     font-size: clamp(1rem, 2vw, 1.6rem);
     color: var(--muted);

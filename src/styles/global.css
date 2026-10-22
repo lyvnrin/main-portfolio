@@ -11,7 +11,8 @@
   --slate-soft: #C7D1DE;
   --slate-deep: #36475C;
 
-  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-serif: 'Newsreader', Georgia, serif;
   --font-sc: 'Cormorant SC', Georgia, serif;
   --font-sans: 'Inter', system-ui, sans-serif;
 
@@ -65,7 +66,7 @@ body {
   background: var(--bg);
   color: var(--ink);
   font-family: var(--font-serif);
-  font-weight: 400;
+  font-weight: 450;
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
