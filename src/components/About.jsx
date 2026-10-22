@@ -14,7 +14,7 @@ const styles = `
     align-items: stretch;
   }
 
-  .about-left {
+  .about-aside {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -44,55 +44,16 @@ const styles = `
     opacity: 0.6;
   }
 
-  .about-margin-note {
-    margin-top: 2rem;
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-size: 0.85rem;
-    color: var(--rose-deep);
-    border-left: 1px solid rgba(2,12,114,0.4);
-    padding-left: 0.75rem;
-    line-height: 1.5;
-    max-width: 80%;
-  }
-
-  .about-cf {
-    margin-top: 2rem;
-    border-left: 1px solid rgba(2,12,114,0.4);
-    padding-left: 0.75rem;
-  }
-
-  .about-cf-label {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-size: 0.85rem;
-    color: var(--rose-deep);
-    margin-right: 0.5em;
-  }
-
-  .about-cf-text {
-    display: inline;
-    font-family: var(--font-serif);
-    font-size: 0.95rem;
-    line-height: 1.6;
-    color: var(--muted);
-  }
-
-  .about-summary {
-    margin-top: 1.25rem;
-    font-family: var(--font-serif);
-    font-size: 0.9rem;
-    line-height: 1.6;
-    color: var(--muted);
-    max-width: 85%;
-  }
-
-  .about-right {
+  .about-body {
     padding-top: 0.5rem;
   }
 
   .about-para {
     margin-bottom: 2rem;
+  }
+
+  .about-para:last-child {
+    margin-bottom: 0;
   }
 
   .about-para-label {
@@ -111,37 +72,9 @@ const styles = `
     color: var(--ink);
   }
 
-  .about-area-term {
-    position: relative;
-    color: var(--ink);
-    transition: color 0.3s ease;
-  }
-
-  .about-area-term::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: -0.05em;
-    height: 1px;
-    background: currentColor;
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.4s var(--ease-out-expo);
-  }
-
-  .about-area-term:hover {
-    color: var(--rose);
-    font-style: italic;
-  }
-
-  .about-area-term:hover::after {
-    transform: scaleX(1);
-  }
-
   /* ── Meta strip ── */
   .about-meta-strip {
-    margin-top: 4rem;
+    margin-top: 1rem;
     padding-top: 2rem;
     border-top: 1px solid var(--rule);
     display: grid;
@@ -192,7 +125,7 @@ const styles = `
       grid-template-columns: 1fr;
       gap: 3rem;
     }
-    .about-left {
+    .about-aside {
       height: auto;
     }
     .about-photo {
@@ -221,50 +154,28 @@ export default function About() {
       <div className="section-wrap">
         <SectionHeader number="I" title="On the writer" />
         <div className="about-grid">
-          <div className="about-left reveal">
-            <div className="about-photo">
-              <img src="/about-photo.jpg" alt="Lavanya reading Batman: Hush in a comic book store" />
-            </div>
-            <p className="about-margin-note">
-              - taken somewhere between a deploy and a deadline.
-            </p>
-
-            <div className="about-cf reveal reveal-delay-2">
-              <span className="about-cf-label">cf.</span>
-              <p className="about-cf-text">
-                <span className="about-area-term">Data Science</span>,{' '}
-                <span className="about-area-term">Research</span>,{' '}
-                <span className="about-area-term">Web Development</span>,{' '}
-                <span className="about-area-term">Financial Systems</span>,{' '}
-                <span className="about-area-term">Systems Thinking</span>
-              </p>
-            </div>
-
-            <p className="about-summary">
-              Full-stack leaning - drawn to wrangling messy datasets, building APIs,
-              and crafting the interfaces that sit on top.
-            </p>
-          </div>
-
-          <div className="about-right">
+          <div className="about-body">
             <div className="about-para reveal reveal-delay-1">
               <span className="about-para-label">¶ I.</span>
               <p className="about-para-text">
-                Hi, I'm a penultimate year Computer Science student at Royal Holloway,
+                Hi, I'm a final year Computer Science student at Royal Holloway,
                 University of London. I'm presently absorbed in the art of making machines
-                do interesting things. My work sits at the intersection of data systems,
-                clean interfaces, and the stubborn belief that software should be both
-                rigorous and human.
+                do interesting things.
               </p>
             </div>
 
             <div className="about-para reveal reveal-delay-2">
               <span className="about-para-label">¶ II.</span>
               <p className="about-para-text">
-                This summer, I'm interning at TCS as a Business Analyst (AI & ST),
-                working at the intersection of emerging tech and strategy. Still chasing
-                problems that are genuinely hard, ideally with good coffee nearby.
+                My work sits at the intersection of data systems, clean interfaces, and
+                the stubborn belief that software should be both rigorous and human.
               </p>
+            </div>
+          </div>
+
+          <div className="about-aside reveal">
+            <div className="about-photo">
+              <img src="/about-photo.jpg" alt="Lavanya sitting by a window overlooking London" />
             </div>
           </div>
         </div>
@@ -303,8 +214,7 @@ export default function About() {
             <dt>Currently</dt>
             <dd>
               <div className="meta-entry">
-                <span>Penultimate year</span>
-                <span className="meta-sub">Interning at TCS, Summer 2026</span>
+                <span>Final year</span>
                 <span className="meta-sub">London, England</span>
               </div>
             </dd>
