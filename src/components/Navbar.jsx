@@ -2,46 +2,26 @@ import { useEffect, useState, useRef } from 'react';
 import { useTheme } from '../hooks/useTheme.js';
 
 const styles = `
-  .navbar {
+  /* ── Contents sidebar (wide screens) ── */
+  .toc {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
+    top: 50%;
+    left: 1.75rem;
     z-index: 8000;
-    height: 60px;
+    width: 8rem;
     display: flex;
-    align-items: center;
-    background: rgba(250,247,242,0.55);
-    backdrop-filter: blur(12px) saturate(150%);
-    -webkit-backdrop-filter: blur(12px) saturate(150%);
+    flex-direction: column;
+    gap: 1.6rem;
     opacity: 0;
-    transform: translateY(-100%);
+    transform: translate(-1rem, -50%);
     transition: opacity 0.5s var(--ease-out-expo), transform 0.5s var(--ease-out-expo);
     pointer-events: none;
   }
 
-  .navbar.visible {
+  .toc.visible {
     opacity: 1;
-    transform: translateY(0);
+    transform: translate(0, -50%);
     pointer-events: auto;
-  }
-
-  .navbar::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: rgba(31,26,21,0.15);
-  }
-
-  .navbar-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    padding: 0 2.5rem;
   }
 
   .navbar-monogram {
@@ -51,20 +31,28 @@ const styles = `
     color: var(--ink);
     font-weight: 600;
     transition: color 0.3s ease;
-    flex: 0 0 auto;
+    align-self: flex-start;
   }
 
   .navbar-monogram:hover {
     color: var(--rose);
   }
 
-  .navbar-center {
+  .toc-heading {
+    font-family: var(--font-sc);
+    font-size: 0.62rem;
+    letter-spacing: 0.24em;
+    color: var(--muted);
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: -0.6rem;
+  }
+
+  .toc-list {
+    list-style: none;
     display: flex;
-    align-items: center;
-    gap: 2rem;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    flex-direction: column;
+    gap: 0.55rem;
   }
 
   .nav-item {
@@ -72,12 +60,23 @@ const styles = `
     align-items: baseline;
     gap: 0.3em;
     position: relative;
+    width: 100%;
+    text-align: left;
+  }
+
+  .toc-num {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 0.7rem;
+    color: var(--muted);
+    min-width: 1.1rem;
+    transition: color 0.3s ease;
   }
 
   .nav-item-word {
     font-family: var(--font-serif);
     font-weight: 600;
-    font-size: 1rem;
+    font-size: 0.85rem;
     color: var(--ink);
     position: relative;
     transition: color 0.3s ease;
@@ -100,26 +99,28 @@ const styles = `
     transform: scaleX(1);
   }
 
+  .toc-leader {
+    flex: 1;
+    min-width: 0.5rem;
+    border-bottom: 1px dotted var(--rule);
+    transform: translateY(-0.25em);
+  }
+
   .nav-item-pos {
     font-family: var(--font-serif);
     font-style: italic;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     color: var(--muted);
     transition: color 0.3s ease;
   }
 
-  .nav-item.active .nav-item-pos {
+  .nav-item.active .nav-item-pos,
+  .nav-item.active .toc-num {
     color: var(--rose);
   }
 
-  .nav-sep {
-    color: var(--muted);
-    font-size: 0.75rem;
-    opacity: 0.5;
-  }
-
   .theme-toggle {
-    flex: 0 0 auto;
+    align-self: flex-start;
     width: 32px;
     height: 32px;
     border-radius: 50%;
@@ -139,9 +140,27 @@ const styles = `
     transform: rotate(20deg);
   }
 
-  /* ── Mobile menu ── */
-  .mobile-menu-btn {
+  /* ── Compact contents menu (narrow screens) ── */
+  .mobile-menu-wrap {
     display: none;
+    position: fixed;
+    top: 1.25rem;
+    left: 1.25rem;
+    z-index: 8000;
+    opacity: 0;
+    transform: translateX(-1rem);
+    transition: opacity 0.5s var(--ease-out-expo), transform 0.5s var(--ease-out-expo);
+    pointer-events: none;
+  }
+
+  .mobile-menu-wrap.visible {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
+  }
+
+  .mobile-menu-btn {
+    display: flex;
     width: 32px;
     height: 32px;
     border-radius: 50%;
@@ -151,7 +170,7 @@ const styles = `
     font-size: 1.1rem;
     font-weight: 300;
     color: var(--muted);
-    background: transparent;
+    background: var(--bg);
     transition: border-color 0.3s ease, color 0.3s ease, transform 0.4s var(--ease-out-expo);
     line-height: 1;
     flex-shrink: 0;
@@ -170,15 +189,16 @@ const styles = `
 
   .mobile-dropdown {
     position: absolute;
-    top: 60px;
-    right: 1.5rem;
+    top: 44px;
+    left: 0;
     background: rgba(250,247,242,0.96);
     backdrop-filter: blur(16px) saturate(150%);
     -webkit-backdrop-filter: blur(16px) saturate(150%);
     border: 1px solid var(--rule);
-    min-width: 180px;
+    min-width: 200px;
     opacity: 0;
     transform: translateY(-8px) scale(0.97);
+    transform-origin: top left;
     pointer-events: none;
     transition: opacity 0.3s var(--ease-out-expo), transform 0.3s var(--ease-out-expo);
     z-index: 9000;
@@ -190,19 +210,15 @@ const styles = `
     pointer-events: auto;
   }
 
-  .mobile-dropdown-item {
-    display: flex;
-    align-items: baseline;
-    gap: 0.4em;
-    padding: 0.9rem 1.25rem;
-    border-bottom: 1px solid rgba(31,26,21,0.06);
-    width: 100%;
-    text-align: left;
-    transition: background 0.2s ease;
+  .mobile-dropdown .toc-heading {
+    padding: 0.9rem 1.25rem 0.5rem;
+    margin-bottom: 0;
   }
 
-  .mobile-dropdown-item:last-child {
-    border-bottom: none;
+  .mobile-dropdown-item {
+    padding: 0.9rem 1.25rem;
+    border-bottom: 1px solid rgba(31,26,21,0.06);
+    transition: background 0.2s ease;
   }
 
   .mobile-dropdown-item:hover {
@@ -211,12 +227,6 @@ const styles = `
 
   .mobile-dropdown-item:hover .nav-item-word {
     color: var(--rose);
-  }
-
-  .mobile-dropdown-divider {
-    height: 1px;
-    background: var(--rule);
-    margin: 0;
   }
 
   .mobile-theme-label {
@@ -232,7 +242,6 @@ const styles = `
     align-items: center;
     justify-content: space-between;
     padding: 0.9rem 1.25rem;
-    border-top: 1px solid rgba(240,235,227,0.06);
   }
 
   .mobile-theme-toggle {
@@ -254,34 +263,22 @@ const styles = `
     color: var(--rose);
   }
 
-  /* ── Dark mode navbar ── */
-  [data-theme='dark'] .navbar {
-    background: rgba(22,18,14,0.65);
-  }
-
   [data-theme='dark'] .mobile-dropdown {
     background: rgba(22,18,14,0.96);
   }
 
-  .mobile-menu-wrap {
-    display: none;
-    position: relative;
-  }
-
-  @media (max-width: 768px) {
-    .navbar-center { display: none; }
-    .theme-toggle { display: none; }
+  /* The sidebar needs the gutter beside the 1200px content column */
+  @media (max-width: 1499px) {
+    .toc { display: none; }
     .mobile-menu-wrap { display: block; }
-    .mobile-menu-btn { display: flex; }
-    .navbar-inner { padding: 0 1.5rem; }
   }
 `;
 
 const navItems = [
-  { label: 'about',   pos: 'n.', href: '#about' },
-  { label: 'skills',  pos: 'n.', href: '#skills' },
-  { label: 'work',    pos: 'n.', href: '#projects' },
-  { label: 'contact', pos: 'n.', href: '#contact' },
+  { num: 'i.',   label: 'about',   pos: 'n.', href: '#about' },
+  { num: 'ii.',  label: 'skills',  pos: 'n.', href: '#skills' },
+  { num: 'iii.', label: 'work',    pos: 'n.', href: '#projects' },
+  { num: 'iv.',  label: 'contact', pos: 'n.', href: '#contact' },
 ];
 
 const SECTIONS = ['about', 'skills', 'projects', 'contact'];
@@ -347,10 +344,25 @@ export default function Navbar() {
     return item.pos;
   };
 
-  return (
-    <nav className={`navbar${visible ? ' visible' : ''}`} aria-label="Main navigation">
-      <div className="navbar-inner">
+  const isActive = (item) => active === item.href.replace('#', '');
 
+  const entry = (item, className) => (
+    <button
+      className={`nav-item ${className}${isActive(item) ? ' active' : ''}`}
+      onClick={() => scrollTo(item.href)}
+      data-cursor="view →"
+    >
+      <span className="toc-num">{item.num}</span>
+      <span className="nav-item-word">{item.label}</span>
+      <span className="toc-leader" />
+      <span className="nav-item-pos">{getPOS(item)}</span>
+    </button>
+  );
+
+  return (
+    <>
+      {/* Contents sidebar (wide screens) */}
+      <nav className={`toc${visible ? ' visible' : ''}`} aria-label="Contents">
         <button
           className="navbar-monogram"
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
@@ -359,24 +371,14 @@ export default function Navbar() {
           LK
         </button>
 
-        {/* Desktop centre nav */}
-        <div className="navbar-center">
-          {navItems.map((item, i) => (
-            <span key={item.label} style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}>
-              {i > 0 && <span className="nav-sep">·</span>}
-              <button
-                className={`nav-item${active === item.href.replace('#', '') ? ' active' : ''}`}
-                onClick={() => scrollTo(item.href)}
-                data-cursor="view →"
-              >
-                <span className="nav-item-word">{item.label}</span>
-                <span className="nav-item-pos">{getPOS(item)}</span>
-              </button>
-            </span>
-          ))}
-        </div>
+        <p className="toc-heading">contents</p>
 
-        {/* Desktop theme toggle */}
+        <ol className="toc-list">
+          {navItems.map((item) => (
+            <li key={item.label}>{entry(item, 'toc-entry')}</li>
+          ))}
+        </ol>
+
         <button
           className="theme-toggle"
           onClick={toggle}
@@ -385,45 +387,37 @@ export default function Navbar() {
         >
           {theme === 'light' ? '☽' : '☀'}
         </button>
+      </nav>
 
-        {/* Mobile + button */}
-        <div ref={dropdownRef} className="mobile-menu-wrap">
-          <button
-            className={`mobile-menu-btn${menuOpen ? ' open' : ''}`}
-            onClick={() => setMenuOpen(o => !o)}
-            aria-label="Toggle menu"
-          >
-            +
-          </button>
+      {/* Compact contents menu (narrow screens) */}
+      <div ref={dropdownRef} className={`mobile-menu-wrap${visible ? ' visible' : ''}`}>
+        <button
+          className={`mobile-menu-btn${menuOpen ? ' open' : ''}`}
+          onClick={() => setMenuOpen(o => !o)}
+          aria-label="Toggle contents"
+        >
+          +
+        </button>
 
-          <div className={`mobile-dropdown${menuOpen ? ' open' : ''}`}>
-            {navItems.map((item) => (
-              <button
-                key={item.label}
-                className="mobile-dropdown-item"
-                onClick={() => scrollTo(item.href)}
-              >
-                <span className="nav-item-word">{item.label}</span>
-                <span className="nav-item-pos">{getPOS(item)}</span>
-              </button>
-            ))}
-            <div className="mobile-dropdown-divider" />
-            <div className="mobile-theme-row">
-              <span className="mobile-theme-label">
-                {theme === 'light' ? 'dark mode' : 'light mode'}
-              </span>
-              <button
-                className="mobile-theme-toggle"
-                onClick={toggle}
-                aria-label="Toggle theme"
-              >
-                {theme === 'light' ? '☽' : '☀'}
-              </button>
-            </div>
+        <nav className={`mobile-dropdown${menuOpen ? ' open' : ''}`} aria-label="Contents">
+          <p className="toc-heading">contents</p>
+          {navItems.map((item) => (
+            <div key={item.label}>{entry(item, 'mobile-dropdown-item')}</div>
+          ))}
+          <div className="mobile-theme-row">
+            <span className="mobile-theme-label">
+              {theme === 'light' ? 'dark mode' : 'light mode'}
+            </span>
+            <button
+              className="mobile-theme-toggle"
+              onClick={toggle}
+              aria-label="Toggle theme"
+            >
+              {theme === 'light' ? '☽' : '☀'}
+            </button>
           </div>
-        </div>
-
+        </nav>
       </div>
-    </nav>
+    </>
   );
 }
