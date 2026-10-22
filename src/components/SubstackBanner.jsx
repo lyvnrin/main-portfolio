@@ -118,7 +118,6 @@ export default function SubstackBanner() {
             target="_blank"
             rel="noopener noreferrer"
             className="substack-link"
-            data-cursor="read →"
           >
             The SWE Scriptures
             <span className="substack-link-arrow">→</span>

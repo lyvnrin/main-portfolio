@@ -347,7 +347,6 @@ export default function Navbar() {
     <button
       className={`nav-item ${className}${isActive(item) ? ' active' : ''}`}
       onClick={() => scrollTo(item.href)}
-      data-cursor="view →"
     >
       <span className="toc-num">{item.num}</span>
       <span className="nav-item-word">{item.label}</span>
@@ -363,7 +362,6 @@ export default function Navbar() {
         <button
           className="navbar-monogram"
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          data-cursor="top ↑"
         >
           LK
         </button>
@@ -379,7 +377,6 @@ export default function Navbar() {
         <button
           className="theme-toggle"
           onClick={toggle}
-          data-cursor={theme === 'light' ? 'dark ◑' : 'light ◑'}
         >
           {theme === 'light' ? 'dark mode' : 'light mode'}
         </button>

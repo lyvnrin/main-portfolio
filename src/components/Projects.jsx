@@ -377,7 +377,6 @@ export default function Projects() {
                 className={`folder-tab${i === activeIndex ? ' active' : ''}`}
                 onClick={() => setActiveIndex(i)}
                 onKeyDown={onTabKey}
-                data-cursor="open →"
               >
                 <span className="folder-tab-num">№ {p.number}</span>
                 <span className="folder-tab-title">{p.title}</span>
@@ -415,7 +414,6 @@ export default function Projects() {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="folder-pill folder-pill-link"
-                        data-cursor="view →"
                       >
                         {link.label} ↗
                       </a>

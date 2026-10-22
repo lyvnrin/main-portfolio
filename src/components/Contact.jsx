@@ -119,7 +119,6 @@ export default function Contact() {
                 target={link.target}
                 rel="noopener noreferrer"
                 className="directory-handle"
-                data-cursor="view →"
               >
                 {link.handle}
                 <span className="directory-handle-arrow" aria-hidden="true">↗</span>
