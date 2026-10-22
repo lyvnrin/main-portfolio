@@ -87,7 +87,8 @@ const styles = `
   @media (max-width: 768px) {
     .substack-inner {
       flex-direction: column;
-      align-items: flex-start;
+      align-items: center;
+      text-align: center;
       gap: 0.6rem;
     }
     .substack-text {

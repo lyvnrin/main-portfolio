@@ -221,6 +221,11 @@ const styles = `
     pointer-events: auto;
   }
 
+  .mobile-dropdown .navbar-monogram {
+    display: block;
+    padding: 1rem 1.25rem 0;
+  }
+
   .mobile-dropdown .toc-heading {
     padding: 0.9rem 1.25rem 0.5rem;
     margin-bottom: 0;
@@ -333,6 +338,11 @@ export default function Navbar() {
     return () => document.removeEventListener('mousedown', onClickOutside);
   }, []);
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setMenuOpen(false);
+  };
+
   const scrollTo = (href) => {
     const id = href.replace('#', '');
     const el = document.getElementById(id);
@@ -366,7 +376,7 @@ export default function Navbar() {
       <nav className={`toc${visible ? ' visible' : ''}`} aria-label="Contents">
         <button
           className="navbar-monogram"
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          onClick={scrollToTop}
         >
           LK
         </button>
@@ -397,6 +407,7 @@ export default function Navbar() {
         />
 
         <nav className={`mobile-dropdown${menuOpen ? ' open' : ''}`} aria-label="Contents">
+          <button className="navbar-monogram" onClick={scrollToTop}>LK</button>
           <p className="toc-heading">contents</p>
           {navItems.map((item) => (
             <div key={item.label}>{entry(item, 'mobile-dropdown-item')}</div>
