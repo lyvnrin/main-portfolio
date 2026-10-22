@@ -25,7 +25,8 @@ const styles = `
 
   .hero-entry-label {
     font-family: var(--font-sc);
-    font-size: 0.7rem;
+    font-size: 0.8rem;
+    font-weight: 600;
     letter-spacing: 0.18em;
     color: var(--muted);
     margin-bottom: 0.75rem;
@@ -59,19 +60,11 @@ const styles = `
     padding-bottom: 0.2em;
   }
 
-  .hero-pronunciation {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-size: clamp(1rem, 2vw, 1.4rem);
-    color: var(--muted);
-    margin-bottom: 0.75rem;
-    letter-spacing: 0.01em;
-  }
-
   .hero-pronoun-row {
     display: flex;
     align-items: center;
     gap: 0.6rem;
+    margin-top: 0.75rem;
     margin-bottom: 2rem;
   }
 
@@ -108,7 +101,7 @@ const styles = `
 
   .hero-def-num {
     font-family: var(--font-sc);
-    font-size: 0.72rem;
+    font-size: 0.9rem;
     letter-spacing: 0.1em;
     color: var(--rose);
     flex-shrink: 0;
@@ -143,7 +136,8 @@ const styles = `
     gap: 1rem;
     flex-shrink: 0;
     font-family: var(--font-sc);
-    font-size: 0.62rem;
+    font-size: 0.9rem;
+    font-weight: 600;
     letter-spacing: 0.14em;
     color: var(--muted);
   }
@@ -167,9 +161,9 @@ const styles = `
 `;
 
 const synonyms = [
-  'penultimate year cs student',
+  'final year cs student',
   'full-stack developer',
-  'aspiring data analyst',
+  'aspiring data scientist',
   'fintech curious',
   'systems thinker',
   'builder of things that matter',
@@ -208,7 +202,6 @@ export default function Hero() {
             <h1 className="hero-name">Lavanya Kamble</h1>
             <span className="hero-pos">n.</span>
           </div>
-          <p className="hero-pronunciation">/ lə · vʌn · jə · kɑm · bleɪ /</p>
           <div className="hero-pronoun-row">
             <span className="hero-pronoun-badge">she / her</span>
           </div>
@@ -217,7 +210,7 @@ export default function Hero() {
             <div className="hero-definition">
               <span className="hero-def-num">1.</span>
               <p className="hero-def-text">
-                <span className={synonymClass}>{synonyms[synIdx]}</span>;
+                <span className={synonymClass}>{synonyms[synIdx]}</span>{' '};
                 documented at the intersection of systems and data. Known to
                 deliver under pressure. Chiefly collaborative.
               </p>
