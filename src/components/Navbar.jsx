@@ -222,7 +222,7 @@ const styles = `
   }
 
   .mobile-dropdown-item:hover {
-    background: rgba(184,98,74,0.05);
+    background: rgba(2,12,114,0.05);
   }
 
   .mobile-dropdown-item:hover .nav-item-word {

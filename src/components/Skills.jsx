@@ -66,7 +66,7 @@ const styles = `
   }
 
   .skill-pill.rose {
-    border-color: rgba(184,98,74,0.4);
+    border-color: rgba(2,12,114,0.4);
     color: var(--rose-deep);
   }
 

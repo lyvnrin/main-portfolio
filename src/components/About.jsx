@@ -51,7 +51,7 @@ const styles = `
     font-style: italic;
     font-size: 0.85rem;
     color: var(--rose-deep);
-    border-left: 1px solid rgba(184,98,74,0.4);
+    border-left: 1px solid rgba(2,12,114,0.4);
     padding-left: 0.75rem;
     line-height: 1.5;
     max-width: 80%;
@@ -59,7 +59,7 @@ const styles = `
 
   .about-cf {
     margin-top: 2rem;
-    border-left: 1px solid rgba(184,98,74,0.4);
+    border-left: 1px solid rgba(2,12,114,0.4);
     padding-left: 0.75rem;
   }
 
