@@ -1,3 +1,5 @@
+import { injectStyles } from '../utils/injectStyles.js';
+
 const styles = `
   .section-header {
     display: flex;
@@ -17,18 +19,9 @@ const styles = `
   }
 `;
 
-let injected = false;
-
-function injectStyles() {
-  if (injected) return;
-  injected = true;
-  const el = document.createElement('style');
-  el.textContent = styles;
-  document.head.appendChild(el);
-}
+injectStyles('section-header-styles', styles);
 
 export default function SectionHeader({ number, title }) {
-  injectStyles();
   return (
     <div className="section-header reveal">
       <span className="section-header-label">§ {number} — {title}</span>

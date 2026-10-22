@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import { useTheme } from '../hooks/useTheme.js';
+import { injectStyles } from '../utils/injectStyles.js';
 
 const styles = `
   /* ── Contents sidebar (wide screens) ── */
@@ -257,6 +258,8 @@ const styles = `
   }
 `;
 
+injectStyles('navbar-styles', styles);
+
 const navItems = [
   { num: 'i.',   label: 'about',   pos: 'n.', href: '#about' },
   { num: 'ii.',  label: 'skills',  pos: 'n.', href: '#skills' },
@@ -271,16 +274,7 @@ export default function Navbar() {
   const [active, setActive]       = useState('');
   const [menuOpen, setMenuOpen]   = useState(false);
   const { theme, toggle }         = useTheme();
-  const styleRef                  = useRef(null);
   const dropdownRef               = useRef(null);
-
-  useEffect(() => {
-    const el = document.createElement('style');
-    el.textContent = styles;
-    document.head.appendChild(el);
-    styleRef.current = el;
-    return () => el.remove();
-  }, []);
 
   useEffect(() => {
     const onScroll = () => setVisible(window.scrollY > 100);

@@ -1,5 +1,5 @@
 // src/components/Footer.jsx
-import { useEffect } from 'react';
+import { injectStyles } from '../utils/injectStyles.js';
 
 const styles = `
   .footer {
@@ -53,14 +53,9 @@ const styles = `
   }
 `;
 
-export default function Footer() {
-  useEffect(() => {
-    const el = document.createElement('style');
-    el.textContent = styles;
-    document.head.appendChild(el);
-    return () => el.remove();
-  }, []);
+injectStyles('footer-styles', styles);
 
+export default function Footer() {
   return (
     <footer className="footer">
       <div className="section-wrap">

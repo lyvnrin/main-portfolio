@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
 import SectionHeader from './SectionHeader.jsx';
 import { useRevealElements } from '../hooks/useReveal.js';
+import { injectStyles } from '../utils/injectStyles.js';
 
 const styles = `
   .skills-section {
@@ -89,6 +89,8 @@ const styles = `
   }
 `;
 
+injectStyles('skills-styles', styles);
+
 const categories = [
   { label: 'BACKEND & AI', dot: 'rose', skills: ['FastAPI', 'Flask', 'Anthropic API'] },
   { label: 'DATA', dot: 'slate', skills: ['NumPy', 'Scikit-learn', 'Matplotlib', 'PostgreSQL', 'SQLite'] },
@@ -100,13 +102,6 @@ const categories = [
 
 export default function Skills() {
   useRevealElements();
-
-  useEffect(() => {
-    const el = document.createElement('style');
-    el.textContent = styles;
-    document.head.appendChild(el);
-    return () => el.remove();
-  }, []);
 
   return (
     <section id="skills" className="skills-section">

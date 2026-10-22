@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { injectStyles } from '../utils/injectStyles.js';
 
 const styles = `
   #hero {
@@ -161,6 +162,8 @@ const styles = `
   }
 `;
 
+injectStyles('hero-styles', styles);
+
 const synonyms = [
   'final year cs student',
   'full-stack developer',
@@ -173,13 +176,6 @@ const synonyms = [
 export default function Hero() {
   const [synIdx, setSynIdx] = useState(0);
   const [fading, setFading] = useState(false);
-
-  useEffect(() => {
-    const el = document.createElement('style');
-    el.textContent = styles;
-    document.head.appendChild(el);
-    return () => el.remove();
-  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {

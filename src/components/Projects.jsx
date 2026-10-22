@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import SectionHeader from './SectionHeader.jsx';
 import { useRevealElements } from '../hooks/useReveal.js';
+import { injectStyles } from '../utils/injectStyles.js';
 
 const styles = `
   /* the folder sits on its own cool surface so it lifts off the cream page */
@@ -251,6 +252,8 @@ const styles = `
   }
 `;
 
+injectStyles('projects-styles', styles);
+
 const projects = [
   {
     number: '01',
@@ -349,13 +352,6 @@ export default function Projects() {
   const tabRefs = useRef([]);
   const tabsRef = useRef(null);
   useRevealElements();
-
-  useEffect(() => {
-    const el = document.createElement('style');
-    el.textContent = styles;
-    document.head.appendChild(el);
-    return () => el.remove();
-  }, []);
 
   // keep the open tab in view when the row is scrolled
   useEffect(() => {

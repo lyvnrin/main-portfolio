@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
 import { useRevealElements } from '../hooks/useReveal.js';
+import { injectStyles } from '../utils/injectStyles.js';
 
 const styles = `
   .substack-banner {
@@ -96,15 +96,10 @@ const styles = `
   }
 `;
 
+injectStyles('substack-banner-styles', styles);
+
 export default function SubstackBanner() {
   useRevealElements();
-
-  useEffect(() => {
-    const el = document.createElement('style');
-    el.textContent = styles;
-    document.head.appendChild(el);
-    return () => el.remove();
-  }, []);
 
   return (
     <div className="substack-banner">

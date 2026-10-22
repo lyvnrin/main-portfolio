@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
 import SectionHeader from './SectionHeader.jsx';
 import { useRevealElements } from '../hooks/useReveal.js';
+import { injectStyles } from '../utils/injectStyles.js';
 
 const styles = `
   .about-section {
@@ -139,15 +139,10 @@ const styles = `
   }
 `;
 
+injectStyles('about-styles', styles);
+
 export default function About() {
   useRevealElements();
-
-  useEffect(() => {
-    const el = document.createElement('style');
-    el.textContent = styles;
-    document.head.appendChild(el);
-    return () => el.remove();
-  }, []);
 
   return (
     <section id="about" className="about-section">

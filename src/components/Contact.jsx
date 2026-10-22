@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
 import SectionHeader from './SectionHeader.jsx';
 import { useRevealElements } from '../hooks/useReveal.js';
+import { injectStyles } from '../utils/injectStyles.js';
 
 const styles = `
   .contact-section {
@@ -91,6 +91,8 @@ const styles = `
   }
 `;
 
+injectStyles('contact-styles', styles);
+
 const elsewhereLinks = [
   { platform: 'View My CV',  handle: 'Lavanya Kamble.pdf',       href: '/LavanyaKamble_CV.pdf',                                                                         target: '_blank' },
   { platform: 'LinkedIn',    handle: 'lavanyakamble',             href: 'https://www.linkedin.com/in/lavanyakamble/',                                                    target: '_blank' },
@@ -101,13 +103,6 @@ const elsewhereLinks = [
 
 export default function Contact() {
   useRevealElements();
-
-  useEffect(() => {
-    const el = document.createElement('style');
-    el.textContent = styles;
-    document.head.appendChild(el);
-    return () => el.remove();
-  }, []);
 
   return (
     <section id="contact" className="contact-section">
