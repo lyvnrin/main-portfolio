@@ -80,10 +80,6 @@ body::-webkit-scrollbar {
   display: none;
 }
 
-body.modal-open {
-  overflow: hidden;
-}
-
 img, svg {
   display: block;
   max-width: 100%;
@@ -267,16 +263,6 @@ body::before {
 
 [data-theme="dark"] .projects-grid {
   background: rgba(240,235,227,0.08);
-}
-
-/* Case study modal */
-[data-theme="dark"] .case-backdrop {
-  background: rgba(10,8,6,0.5);
-}
-
-[data-theme="dark"] .case-card {
-  background: #1A1510;
-  border-color: rgba(240,235,227,0.1);
 }
 
 /* Skills pills */
