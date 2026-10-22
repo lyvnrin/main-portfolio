@@ -97,6 +97,12 @@ body::-webkit-scrollbar {
   display: none;
 }
 
+/* safety net: content that overflows sideways must never widen the page on phones,
+   or mobile browsers enlarge the layout and push fixed elements off-screen */
+#root {
+  overflow-x: clip;
+}
+
 img, svg {
   display: block;
   max-width: 100%;

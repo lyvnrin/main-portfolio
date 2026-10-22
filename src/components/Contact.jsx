@@ -78,7 +78,23 @@ const styles = `
 
   @media (max-width: 900px) {
     .directory-grid {
-      grid-template-columns: 1fr;
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+
+  /* on phones the label sits above its link, so long handles like the email fit */
+  @media (max-width: 480px) {
+    .directory-entry {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.45rem;
+    }
+    .directory-leader {
+      display: none;
+    }
+    .directory-handle {
+      white-space: normal;
+      word-break: break-all;
     }
   }
 

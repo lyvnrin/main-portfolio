@@ -17,6 +17,15 @@ const styles = `
     white-space: nowrap;
     flex-shrink: 0;
   }
+
+  /* long titles like "Correspondence" would push the page wider than a phone */
+  @media (max-width: 480px) {
+    .section-header-label {
+      font-size: 1.05rem;
+      white-space: normal;
+      flex-shrink: 1;
+    }
+  }
 `;
 
 injectStyles('section-header-styles', styles);

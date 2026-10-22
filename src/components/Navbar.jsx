@@ -270,29 +270,15 @@ const styles = `
     .mobile-menu-wrap { display: block; }
   }
 
-  /* phones have no side margin to spare, so the button floats bottom-right
-     and the menu opens upward from it */
+  /* phones have no side margin to spare, so the button tucks into the top-left
+     corner and gets a shadow to read as floating above the text */
   @media (max-width: 768px) {
     .mobile-menu-wrap {
-      top: auto;
-      left: auto;
-      bottom: 1.25rem;
-      right: 1.25rem;
-      transform: translateY(1rem);
-    }
-    .mobile-menu-wrap.visible {
-      transform: translateY(0);
+      top: 0.75rem;
+      left: 0.75rem;
     }
     .mobile-menu-btn {
       box-shadow: 0 6px 18px -4px rgba(22,26,43,0.25);
-    }
-    .mobile-dropdown {
-      top: auto;
-      left: auto;
-      bottom: 48px;
-      right: 0;
-      transform: translateY(8px) scale(0.97);
-      transform-origin: bottom right;
     }
   }
 `;
