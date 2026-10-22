@@ -14,15 +14,16 @@ const styles = `
   .footer-row {
     display: flex;
     align-items: center;
-    padding: 1.5rem 0;
+    padding: 1rem 0;
   }
 
   .footer-item {
     flex: 1;
     font-family: var(--font-sc);
-    font-size: 0.62rem;
+    font-size: 0.8rem;
+    font-weight: 600;
     letter-spacing: 0.12em;
-    color: var(--muted);
+    color: var(--ink);
     white-space: nowrap;
   }
 
@@ -41,8 +42,8 @@ const styles = `
   @media (max-width: 640px) {
     .footer-row {
       flex-direction: column;
-      gap: 0.6rem;
-      padding: 1.5rem 1.5rem;
+      gap: 0.5rem;
+      padding: 1rem 1.5rem;
     }
     .footer-item.left,
     .footer-item.center,
