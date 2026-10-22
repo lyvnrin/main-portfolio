@@ -84,7 +84,7 @@ const styles = `
 `;
 
 const elsewhereLinks = [
-  { platform: 'View My CV',  handle: 'Lavanya Kamble.pdf',       href: '/LavanyaKamble-CV.pdf',                                                                         target: '_blank' },
+  { platform: 'View My CV',  handle: 'Lavanya Kamble.pdf',       href: '/LavanyaKamble_CV.pdf',                                                                         target: '_blank' },
   { platform: 'LinkedIn',    handle: 'lavanyakamble',             href: 'https://www.linkedin.com/in/lavanyakamble/',                                                    target: '_blank' },
   { platform: 'GitHub',      handle: 'lyvnrin',                   href: 'https://github.com/lyvnrin',                                                                    target: '_blank' },
   { platform: 'Credly',      handle: 'lavanya k',                 href: 'https://www.credly.com/users/lavanya-kamble.73b64a62',                                          target: '_blank' },
