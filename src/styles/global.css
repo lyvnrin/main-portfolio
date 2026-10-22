@@ -1,9 +1,9 @@
 /* ─── Design Tokens ─────────────────────────────────── */
 :root {
-  --bg: #FAF7F2;
-  --ink: #1F1A15;
-  --muted: #6B6157;
-  --rule: rgba(31, 26, 21, 0.18);
+  --bg: #F5F6F9;
+  --ink: #161A2B;
+  --muted: #5D6377;
+  --rule: rgba(22, 26, 43, 0.16);
   --rose: #020C72;
   --rose-soft: #D4D7F2;
   --rose-deep: #010852;
@@ -22,10 +22,10 @@
 
 /* ─── Dark Mode Tokens ───────────────────────────────── */
 [data-theme="dark"] {
-  --bg: #1B1712;
-  --ink: #E4DCCD;
-  --muted: #A89C8C;
-  --rule: rgba(228,220,205,0.12);
+  --bg: #12141C;
+  --ink: #E2E5EE;
+  --muted: #9A9FB2;
+  --rule: rgba(226,229,238,0.12);
   --rose: #7D88EE;
   --rose-soft: #161C4D;
   --rose-deep: #B3B9F5;
@@ -236,12 +236,12 @@ body::before {
 
 /* Mobile dropdown */
 [data-theme="dark"] .mobile-dropdown {
-  background: rgba(22,18,14,0.96);
-  border-color: rgba(240,235,227,0.1);
+  background: rgba(18,20,28,0.96);
+  border-color: rgba(226,229,238,0.1);
 }
 
 [data-theme="dark"] .mobile-dropdown-item {
-  border-bottom-color: rgba(240,235,227,0.06);
+  border-bottom-color: rgba(226,229,238,0.06);
 }
 
 [data-theme="dark"] .mobile-dropdown-item:hover {
@@ -249,7 +249,7 @@ body::before {
 }
 
 [data-theme="dark"] .mobile-dropdown-divider {
-  background: rgba(240,235,227,0.08);
+  background: rgba(226,229,238,0.08);
 }
 
 /* Projects */
@@ -258,11 +258,11 @@ body::before {
 }
 
 [data-theme="dark"] .project-card:hover {
-  background: #1E1812;
+  background: #1A1D2A;
 }
 
 [data-theme="dark"] .projects-grid {
-  background: rgba(240,235,227,0.08);
+  background: rgba(226,229,238,0.08);
 }
 
 /* Skills pills */
@@ -296,7 +296,7 @@ body::before {
 [data-theme="dark"] .form-input,
 [data-theme="dark"] .form-textarea {
   color: var(--ink);
-  border-bottom-color: rgba(240,235,227,0.2);
+  border-bottom-color: rgba(226,229,238,0.2);
 }
 
 [data-theme="dark"] .form-input::placeholder,
@@ -306,11 +306,11 @@ body::before {
 }
 
 [data-theme="dark"] .form-ornament-line {
-  background: rgba(240,235,227,0.15);
+  background: rgba(226,229,238,0.15);
 }
 
 [data-theme="dark"] .form-submit {
-  border-color: rgba(240,235,227,0.25);
+  border-color: rgba(226,229,238,0.25);
   color: var(--ink);
 }
 
@@ -334,5 +334,5 @@ body::before {
 }
 
 [data-theme="dark"] .elsewhere-item {
-  border-bottom-color: rgba(240,235,227,0.08);
+  border-bottom-color: rgba(226,229,238,0.08);
 }

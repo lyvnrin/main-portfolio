@@ -26,7 +26,7 @@ const styles = `
     display: flex;
     align-items: baseline;
     padding: 0.85rem 0;
-    border-bottom: 1px solid rgba(31,26,21,0.08);
+    border-bottom: 1px solid rgba(22,26,43,0.08);
   }
 
   .directory-platform {

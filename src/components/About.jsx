@@ -111,7 +111,7 @@ const styles = `
   .meta-item dd .meta-entry {
     padding-bottom: 0.5rem;
     margin-bottom: 0.5rem;
-    border-bottom: 1px solid rgba(31,26,21,0.06);
+    border-bottom: 1px solid rgba(22,26,43,0.06);
   }
 
   .meta-item dd .meta-entry:last-child {

@@ -4,11 +4,11 @@ import { useEffect } from 'react';
 const styles = `
   .footer {
     border-top: 1px solid var(--rule);
-    background: #ECE2D0;
+    background: #E1E5EE;
   }
 
   [data-theme="dark"] .footer {
-    background: #1C160E;
+    background: #171A25;
   }
 
   .footer-row {

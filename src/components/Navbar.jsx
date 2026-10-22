@@ -191,7 +191,7 @@ const styles = `
     position: absolute;
     top: 44px;
     left: 0;
-    background: rgba(250,247,242,0.96);
+    background: rgba(245,246,249,0.96);
     backdrop-filter: blur(16px) saturate(150%);
     -webkit-backdrop-filter: blur(16px) saturate(150%);
     border: 1px solid var(--rule);
@@ -217,7 +217,7 @@ const styles = `
 
   .mobile-dropdown-item {
     padding: 0.9rem 1.25rem;
-    border-bottom: 1px solid rgba(31,26,21,0.06);
+    border-bottom: 1px solid rgba(22,26,43,0.06);
     transition: background 0.2s ease;
   }
 
@@ -264,7 +264,7 @@ const styles = `
   }
 
   [data-theme='dark'] .mobile-dropdown {
-    background: rgba(22,18,14,0.96);
+    background: rgba(18,20,28,0.96);
   }
 
   /* The sidebar needs the gutter beside the 1200px content column */

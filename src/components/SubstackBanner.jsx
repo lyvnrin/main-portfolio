@@ -14,7 +14,7 @@ const styles = `
     flex-wrap: wrap;
     border: 1px solid var(--rule);
     padding: 1.1rem 1.75rem;
-    background: #F0EAE1;
+    background: #E9ECF2;
   }
 
   .substack-ref-label {
@@ -81,7 +81,7 @@ const styles = `
   }
 
   [data-theme="dark"] .substack-inner {
-    background: #1E1812;
+    background: #1A1D2A;
   }
 
   @media (max-width: 768px) {
