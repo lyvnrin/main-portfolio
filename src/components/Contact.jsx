@@ -68,7 +68,7 @@ const styles = `
 injectStyles('contact-styles', styles);
 
 const elsewhereLinks = [
-  { platform: 'view my cv',  handle: 'Lavanya Kamble.pdf',       href: '/LavanyaKamble_CV.pdf',                                                                         target: '_blank' },
+  { platform: 'view my cv',  handle: 'Lavanya Kamble.pdf',       href: '/LavanyaKamble_CV.pdf?v=2026-11-01',                                                              target: '_blank' },
   { platform: 'linkedin',    handle: 'lavanyakamble',             href: 'https://www.linkedin.com/in/lavanyakamble/',                                                    target: '_blank' },
   { platform: 'github',      handle: 'lyvnrin',                   href: 'https://github.com/lyvnrin',                                                                    target: '_blank' },
   { platform: 'credly',      handle: 'lavanya k',                 href: 'https://www.credly.com/users/lavanya-kamble.73b64a62',                                          target: '_blank' },
